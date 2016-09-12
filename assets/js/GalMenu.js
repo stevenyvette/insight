@@ -40,7 +40,7 @@
 								love: '女',               //爱好
 								remark: "模仿中"
 							}
-        					$('body').prepend("<div id='user' class='user' style='display:block;z-index:1000;'><span></span><div class='out'><div class='in'><a href='#' title='查看资料'><img src='" + options.photo + "' alt='' /></a><div>名称：" + options.name + "<br />性别：" + options.sex + "<br />爱好：" + options.love + "<br />介绍：" + options.remark + "<br /><a href='#' class='btn btn-success btn-small' title='加关注'>+加关注</a>&nbsp;&nbsp;<a href='#' class='btn btn-success btn-small' title='加好友'>+加好友</a></div></div></div></div>");
+        					$('body').prepend("<div id='user' class='user' style='display:block;z-index:1000;-webkit-box-sizing: none;box-sizing: none;'><span></span><div class='out'><div class='in'><a href='#' title='查看资料'><img src='" + options.photo + "' alt='' /></a><div>名称：" + options.name + "<br />性别：" + options.sex + "<br />爱好：" + options.love + "<br />介绍：" + options.remark + "<br /><a href='#' class='btn btn-success btn-small' title='加关注'>+加关注</a>&nbsp;&nbsp;<a href='#' class='btn btn-success btn-small' title='加好友'>+加好友</a></div></div></div></div>");
 	                    	var $btip = $("#user");
 	                    	GalMenu.getCoords(e);
 	                    	var add = 150;
