@@ -118,20 +118,25 @@
                         <a href="#network-graph" data-step="6" data-intro="图文件可视化<p>导入图文件后显示各类分析的可视化结果</p>键盘快捷键：&rarr;" data-position='top'><i class="fa fa-desktop"></i> Network Graph</a>
                     </li>
                     <li>
-                        <a href="#pocc-chart" data-step="7" data-intro="POCC值柱状图<p>针对每个节点的POCC值（即面向属性的聚类系数）</br>同时给出CC值（聚类系数）作为比较</p>键盘快捷键：&rarr;" data-position='right'><i class="fa fa-bar-chart-o"></i> POCC chart</a>
-                    </li>
-                    
-                    <li>
-                        <a href="#property-table" data-step="8" data-intro="节点属性表<p>以表格的形式给出所有节点的各类属性</br>表格具有检索、排序等功能</p>键盘快捷键：&rarr;" data-position='right'><i class="fa fa-table"></i> Property Table</a>
-                    </li>
-                    <li>
-                        <a href="#candidate-chart" data-step="9" data-intro="候选替补者饼图<p>针对每个节点的POCC值（即面向属性的聚类系数）</br>同时给出CC值（聚类系数）作为比较</p>键盘快捷键：&rarr;" data-position='right'><i class="fa fa-circle-o"></i> Candidate chart</a>
-                    </li>
-                    <li>
-                        <a href="#rv-rp-chart" data-step="10" data-intro="替换值与替换概率<p>根据算法以及移除的节点计算其他节点的RV、RP值</br>以折现图的形式给出结果</p>键盘快捷键：&rarr;" data-position='right'><i class="fa fa-bar-chart-o"></i> RV & RP chart</a>
-                    </li>
+                    	<a href="#" data-step="7" data-intro="更多信息<p>得到关于网络的更多原始信息</p>键盘快捷键：&rarr;" data-position='right'><i class="fa fa-list-ul"></i>More Details<span class="fa arrow"></span></a>
+                    	<ul class="nav nav-second-level">
+                    		<li>
+		                        <a href="#pocc-chart"><i class="fa fa-bar-chart-o"></i> POCC chart</a>
+		                    </li>
+		                    
+		                    <li>
+		                        <a href="#property-table" ><i class="fa fa-table"></i> Property Table</a>
+		                    </li>
+		                    <li>
+		                        <a href="#candidate-chart" ><i class="fa fa-circle-o"></i> Candidate chart</a>
+		                    </li>
+		                    <li>
+		                        <a href="#rv-rp-chart" ><i class="fa fa-bar-chart-o"></i> RV & RP chart</a>
+		                    </li>
+		                </ul>
+		            </li>
                     <li >
-                        <a href="#" data-step="11" data-intro="帮助向导<p>可以重新打开向导得到帮助</p>键盘快捷键：&rarr;" data-position='right' onclick="javascript:introJs().start();"><i class="fa fa-question" ></i> Help</a>
+                        <a href="#" data-step="8" data-intro="帮助向导<p>可以重新打开向导得到帮助</p>键盘快捷键：&rarr;" data-position='right' onclick="javascript:introJs().start();"><i class="fa fa-question" ></i> Help</a>
                     </li>
                 </ul>
             </div>
@@ -142,7 +147,7 @@
             <a id="head"></a>
             <div class="header" > 
                 <h1 class="page-header">Network Visualization Demon</h1>
-                <div data-step="12" data-intro="导入图文件<p>可视化分析的第一步</br>导入相关图文件</br>方法一:直接选择文件目录打开</br>方法二:直接输入文件的相对路径</p>键盘快捷键：&rarr;" data-position='bottom'>
+                <div data-step="9" data-intro="导入图文件<p>可视化分析的第一步</br>导入相关图文件</br>方法一:直接选择文件目录打开</br>方法二:直接输入文件的相对路径</p>键盘快捷键：&rarr;" data-position='bottom'>
                     <input type="file" accept=".gexf,.xml" onchange="get_filepath1()" id="filename" style="opacity:50%;width:100%" href="#network-graph" >
                     <div class="form-group input-group" >
                         <input type="text" class="form-control" placeholder="Enter the full name of the graph file. (.gexf  or .xml)" id='file-name'>
@@ -159,7 +164,7 @@
                 </div>
     		</div>
             <div id="page-inner" >
-                <div class="row" id="tmp" style="height:400px,display:block" data-step="13" data-intro="可视化分析<p>导入图文件后显示各类分析的可视化结果</p>键盘快捷键：&rarr;" data-position='top'>
+                <div class="row" id="tmp" style="height:400px,display:block" data-step="10" data-intro="可视化分析<p>导入图文件后显示各类分析的可视化结果</p>键盘快捷键：&rarr;" data-position='top'>
                 </div>
                 <div class="row" id="1-5" style="display:none" >
                     <a id="network-graph"></a>

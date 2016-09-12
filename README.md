@@ -1,2 +1,2 @@
-# stone
-stone in js
+# insight
+a network visualization platform 
