@@ -12,9 +12,17 @@
                 settings = $.extend({},
                 GalMenu.defaults, o),
                 $menu = $('.' + settings.menu);
+                var options={
+								photo: "images/avtar.png", //图片路径
+								name: 'fsr',                 //姓名
+								sex: '男',                //性别
+								love: '女',               //爱好
+								remark: "模仿中"
+							}
+                $('body').prepend("<div id='user' class='user' style='display:none;z-index:1000;-webkit-box-sizing: none;box-sizing: none;'><span></span><div class='out'><div class='ins'><a href='#' title='查看资料'><img src='" + options.photo + "' alt='' /></a><div>名称：" + options.name + "<br />性别：" + options.sex + "<br />爱好：" + options.love + "<br />介绍：" + options.remark + "<br /><a href='#' class='btn btn-success btn-small' title='加关注'>+加关注</a>&nbsp;&nbsp;<a href='#' class='btn btn-success btn-small' title='加好友'>+加好友</a></div></div></div></div>");
+	            var $btip = $("#user");
                 $this.on('click',
 	                function(e) {
-	                	console.log(click);
 	                    if (e.which !== 3 && $(e.target).parents('.GalMenu').length < 1 && settings.click_to_close&&click==undefined) {
 	                        $this.find('.GalMenu').stop(true, false).animate({
 	                            opacity: 0
@@ -29,34 +37,33 @@
 	                        $(".circle").removeClass("open");
 	                        $("#overlay").hide();
 	                        setTimeout(function(){$("#option").hide();},100);
-	                        console.log("what");
+	                        $btip.hide();
 	//                      $("#option").css('display','none');
 	                    }else if(click!=undefined){
-	                    	console.log("get");
-	                    	var options={
-								photo: "images/avtar.png", //图片路径
-								name: 'fsr',                 //姓名
-								sex: '男',                //性别
-								love: '女',               //爱好
-								remark: "模仿中"
-							}
-        					$('body').prepend("<div id='user' class='user' style='display:block;z-index:1000;-webkit-box-sizing: none;box-sizing: none;'><span></span><div class='out'><div class='in'><a href='#' title='查看资料'><img src='" + options.photo + "' alt='' /></a><div>名称：" + options.name + "<br />性别：" + options.sex + "<br />爱好：" + options.love + "<br />介绍：" + options.remark + "<br /><a href='#' class='btn btn-success btn-small' title='加关注'>+加关注</a>&nbsp;&nbsp;<a href='#' class='btn btn-success btn-small' title='加好友'>+加好友</a></div></div></div></div>");
-	                    	var $btip = $("#user");
 	                    	GalMenu.getCoords(e);
 	                    	var add = 150;
-	                    	var top = Coords.clientY - add,
-	                    	left = ($('body')[0] === e.target) ? Coords.clickX + add: Coords.clientX - add;
+	                    	var top = Coords.clickY-225;
+	                    	console.log(top);
+	                    	left = (Coords.clickX+290>$(window).width()) ? Coords.clickX-250: Coords.clientX-20;
 	                    	$btip.find("span").addClass('bl');
+	                    	$btip.css('display','block');
 			                $btip.css({
 			                    top: top + 'px',
 	                        	left: left + 'px',
 			                }).show();
 			                click=undefined;
-	                    }
+	                   };
+	                   $btip.off().on('mouseover', function () {
+					            $btip.show();
+					        }).on('mouseout', function () {
+					            $btip.hide();
+					        });
                 });
+                
                 $this.on('contextmenu',
                 	function(e) {
                 		console.log(trans);
+                		$btip.hide();
 	                    e.preventDefault();
 	                    e.stopPropagation();
 	                    GalMenu.getCoords(e);
@@ -111,7 +118,7 @@
                 clickX = evt.pageX;
                 clickY = evt.pageY
             };
-            return Coords = {
+            Coords = {
                 clickX: clickX,
                 clickY: clickY,
                 clientX: evt.clientX,
@@ -119,6 +126,7 @@
                 screenX: evt.screenX,
                 screenY: evt.screenY
             }
+            return Coords;
         }
     };
     $.fn.GalMenu = function(method, options) {
