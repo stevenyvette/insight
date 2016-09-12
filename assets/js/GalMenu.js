@@ -13,61 +13,63 @@
                 GalMenu.defaults, o),
                 $menu = $('.' + settings.menu);
                 $this.on('mousedown',
-                function(e) {
-                    if (e.which !== 3 && $(e.target).parents('.GalMenu').length < 1 && settings.click_to_close) {
-                        $this.find('.GalMenu').stop(true, false).animate({
-                            opacity: 0
-                        },
-                        {
-                            duration: 100,
-                            queue: false,
-                            complete: function() {
-                                $(this).css('display', 'none').find('.active').removeClass('active').next().stop(true, true).slideUp('normal')
-                            }
-                        });
-                        $(".circle").removeClass("open");
-                        $("#overlay").hide();
-                        $("#option").css('display','none');
-                    }
+	                function(e) {
+	                    if (e.which !== 3 && $(e.target).parents('.GalMenu').length < 1 && settings.click_to_close) {
+	                        $this.find('.GalMenu').stop(true, false).animate({
+	                            opacity: 0
+	                        },
+	                        {
+	                            duration: 100,
+	                            queue: false,
+	                            complete: function() {
+	                                $(this).css('display', 'none').find('.active').removeClass('active').next().stop(true, true).slideUp('normal')
+	                            }
+	                        });
+	                        $(".circle").removeClass("open");
+	                        $("#overlay").hide();
+	                        setTimeout(function(){$("#option").hide();},100);
+	//                      $("#option").css('display','none');
+	                    }
                 });
                 $this.on('contextmenu',
-                function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    GalMenu.getCoords(e);
-                    $('.GalMenu_close_me').stop(true, false).animate({
-                        opacity: 0
-                    },
-                    {
-                        duration: 100,
-                        queue: false,
-                        complete: function() {
-                            $(this).css('display', 'none')
-                        }
-                    });
-                    var add = 150;
-                    var top = Coords.clientY - add,
-                    left = ($('body')[0] === e.target) ? Coords.clickX + add: Coords.clientX - add;
-                    $menu.css({
-                        top: top + 'px',
-                        left: left + 'px',
-                        display: 'block'
-                    }).stop(true, false).animate({
-                        opacity: 1
-                    },
-                    {
-                        duration: 100,
-                        queue: false
-                    });
-                    if ($("#gal").hasClass("open")) {
-                        $(".circle").removeClass("open");
-                        $("#overlay").hide();
-                        $("#option").hide();
-                    } else {
-                        $(".circle").addClass("open");
-                        $("#overlay").show();
-                    }
-                })
+                	function(e) {
+                		console.log(trans);
+	                    e.preventDefault();
+	                    e.stopPropagation();
+	                    GalMenu.getCoords(e);
+	                    $('.GalMenu_close_me').stop(true, false).animate({
+	                        opacity: 0
+	                    },
+	                    {
+	                        duration: 100,
+	                        queue: false,
+	                        complete: function() {
+	                            $(this).css('display', 'none')
+	                        }
+	                    });
+	                    var add = 150;
+	                    var top = Coords.clientY - add,
+	                    left = ($('body')[0] === e.target) ? Coords.clickX + add: Coords.clientX - add;
+	                    $menu.css({
+	                        top: top + 'px',
+	                        left: left + 'px',
+	                        display: 'block'
+	                    }).stop(true, false).animate({
+	                        opacity: 1
+	                    },
+	                    {
+	                        duration: 100,
+	                        queue: false
+	                    });
+	                    if ($("#gal").hasClass("open")) {
+	                        $(".circle").removeClass("open");
+	                        $("#overlay").hide();
+	                        setTimeout(function(){$("#option").hide();},100);
+	                    } else {
+	                        $(".circle").addClass("open");
+	                        $("#overlay").show();
+	                    }
+	                })		
             })
         },
         getCoords: function(e) {
