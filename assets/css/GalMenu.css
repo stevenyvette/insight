@@ -1,22 +1,7 @@
 @charset "utf-8";
 
-html,body {
-	margin:0;
-	padding:0;
-	width:100%;
-	height:100%;
-}
 body {
-	font-size:1.4rem;
-	background:#196a73 url("") no-repeat fixed;
-	background-size:cover;
-	font-family:"Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3","FontAwesome",sans-serif;
-	-webkit-font-smoothing:antialiased;
 	-moz-osx-font-smoothing:grayscale;
-}
-a {
-	text-decoration:none;
-	outline:0;
 }
 .GalMenu {
 	margin:0;
@@ -44,6 +29,9 @@ a {
 	-webkit-transition:all 0.4s ease-out;
 	-moz-transition:all 0.4s ease-out;
 	transition:all 0.4s ease-out;
+	font-size:1.7rem;
+	font-family:"Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3","FontAwesome",sans-serif;
+	-webkit-font-smoothing:antialiased;
 }
 .open .ring {
 	opacity:1;
@@ -85,7 +73,7 @@ a {
 	text-align:center;
 	width:80px;
 	background-size:80px;
-	border:2px #b59494 solid;
+	border:0px #b59494 solid;
 	box-shadow:0px 0px 15px #fff;
 	-webkit-box-shadow:0px 0px 15px #fff;
 	-moz-box-shadow:0px 0px 15px #fff;
@@ -96,22 +84,22 @@ a {
 	-moz-box-shadow:inset 0px 0px 80px #fff;
 }
 .ring a:nth-of-type(1) {
-	background-image:url("../img/bg-img.jpg");
+	background-image:url("../img/info.jpg");
 }
 .ring a:nth-of-type(2) {
-	background-image:url("../img/bg-img.jpg");
+	background-image:url("../img/refresh.jpg");
 }
 .ring a:nth-of-type(3) {
-	background-image:url("../img/bg-img.jpg");
+	background-image:url("../img/tbd.jpg");
 }
 .ring a:nth-of-type(4) {
-	background-image:url("../img/bg-img.jpg");
+	background-image:url("../img/back.jpg");
 }
 .ring a:nth-of-type(5) {
-	background-image:url("../img/bg-img.jpg");
+	background-image:url("../img/help.jpg");
 }
 .ring a:nth-of-type(6) {
-	background-image:url("../img/bg-img.jpg");
+	background-image:url("../img/delete.jpg");
 }
 .ring a {
 	display:inline-block;
@@ -120,12 +108,18 @@ a {
 	-webkit-text-shadow:#DC965A 1px 0 0,#DC965A 0 1px 0,#DC965A -1px 0 0,#DC965A 0 -1px 0;
 	-moz-text-shadow:#DC965A 1px 0 0,#DC965A 0 1px 0,#DC965A -1px 0 0,#DC965A 0 -1px 0;
 	*filter:Glow(color=#DC965A,strength=1);
+	-moz-user-select:none;/*火狐*/
+	-webkit-user-select:none;/*webkit浏览器*/
+	-ms-user-select:none;/*IE10*/
+	-khtml-user-select:none;/*早期浏览器*/
+	user-select:none;
 }
 .ring a:hover {
 	text-shadow:#66CCFF 1px 0 0,#66CCFF 0 1px 0,#66CCFF -1px 0 0,#66CCFF 0 -1px 0;
 	-webkit-text-shadow:#66CCFF 1px 0 0,#66CCFF 0 1px 0,#66CCFF -1px 0 0,#66CCFF 0 -1px 0;
 	-moz-text-shadow:#66CCFF 1px 0 0,#66CCFF 0 1px 0,#66CCFF -1px 0 0,#66CCFF 0 -1px 0;
 	*filter:Glow(color=#66CCFF,strength=1);
+	text-decoration: none;
 }
 #overlay {
 	height:100%;
