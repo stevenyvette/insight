@@ -43,9 +43,13 @@
 	                    	GalMenu.getCoords(e);
 	                    	var add = 150;
 	                    	var top = Coords.clickY-225;
-	                    	console.log(top);
-	                    	left = (Coords.clickX+290>$(window).width()) ? Coords.clickX-250: Coords.clientX-20;
+	                    	if(Coords.clickX+290>$(window).width()){
+	                    		left =  Coords.clickX-250
+	                    		$btip.find("span").addClass('br');
+	                    	}else{
+	                    		left = Coords.clientX-20;
 	                    	$btip.find("span").addClass('bl');
+	                    	}
 	                    	$btip.css('display','block');
 			                $btip.css({
 			                    top: top + 'px',
