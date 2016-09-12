@@ -9,6 +9,8 @@
     <!-- FontAwesome Styles-->
     <link rel="stylesheet" href="assets/css/font-awesome.css"/>
     <!-- Custom Styles-->
+    <link rel="stylesheet" href="assets/css/nav.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/GalMenu.css" type="text/css">
     <link rel="stylesheet" href="assets/css/custom-styles.css"/>
     <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css"/> 
     <link rel="stylesheet" href="assets/css/tipbox.css">
@@ -25,6 +27,90 @@
 </head>
 
 <body>
+	
+	<div class="J-global-toolbar">
+	<div class="toolbar-wrap J-wrap">
+		<div class="toolbar">
+			<div class="toolbar-panels J-panel">
+				<div style="visibility: hidden;" class="J-content toolbar-panel tbar-panel-cart toolbar-animate-out">
+					<!--sadf-->
+					<!--sadf-->
+				</div>
+
+				<div style="visibility: hidden;" data-name="follow" class="J-content toolbar-panel tbar-panel-follow">
+					<h3 class="tbar-panel-header J-panel-header">
+						<a href="#" target="_blank" class="title"> <i></i> <em class="title">我的关注</em> </a>
+						<span class="close-panel J-close"></span>
+					</h3>
+					<div class="tbar-panel-main">
+						<div class="tbar-panel-content J-panel-content">
+							<div class="tbar-tipbox2">
+								<div class="tip-inner"> <i class="i-loading"></i> </div>
+							</div>
+						</div>
+					</div>
+					<div class="tbar-panel-footer J-panel-footer"></div>
+				</div>
+				
+				<div style="visibility: hidden;" class="J-content toolbar-panel tbar-panel-history toolbar-animate-in">
+					<h3 class="tbar-panel-header J-panel-header">
+						<a href="#" target="_blank" class="title"> <i></i> <em class="title">我的足迹</em> </a>
+						<span class="close-panel J-close"></span>
+					</h3>
+					<div class="tbar-panel-main">
+						<div class="tbar-panel-content J-panel-content">
+							<div class="jt-history-wrap">
+								<ul>
+									<li class="jth-item">
+										<a href="#" class="img-wrap"> <img src="http://img10.360buyimg.com/n0/s100x100_g9/M03/0C/18/rBEHalCKCk8IAAAAAAD5nbR5xOAAACfgQENi_wAAPm1269.jpg" height="100" width="100" /> </a>
+										<a class="add-cart-button" href="#" target="_blank">加入购物车</a>
+										<a href="#" target="_blank" class="price">￥498.00</a>
+									</li>
+									<li class="jth-item">
+										<a href="#" class="img-wrap"> <img src="http://img10.360buyimg.com/n0/s100x100_g9/M03/0C/18/rBEHalCKCk8IAAAAAAD5nbR5xOAAACfgQENi_wAAPm1269.jpg" height="100" width="100" /></a>
+										<a class="add-cart-button" href="#" target="_blank">加入购物车</a>
+										<a href="#" target="_blank" class="price">￥498.00</a>
+									</li>
+								</ul>
+								<a href="#" class="history-bottom-more" target="_blank">查看更多足迹商品 &gt;&gt;</a>
+							</div>
+						</div>
+					</div>
+					<div class="tbar-panel-footer J-panel-footer"></div>
+				</div>
+			</div>
+			
+			<div class="toolbar-header"></div>
+			
+			<div class="toolbar-tabs J-tab">
+				<div class="toolbar-tab tbar-tab-cart">
+					<i class="tab-ico"></i>
+					<em class="tab-text ">购物车</em>
+					<span class="tab-sub J-count ">1</span>
+				</div>
+				<div class=" toolbar-tab tbar-tab-follow">
+					<i class="tab-ico"></i>
+					<em class="tab-text">我的关注</em>
+					<span class="tab-sub J-count hide">0</span> 
+				</div>
+				<div class=" toolbar-tab tbar-tab-history ">
+					<i class="tab-ico"></i>
+					<em class="tab-text">我的足迹</em>
+					<span class="tab-sub J-count hide">0</span>
+				</div>
+			</div>
+			
+			<div class="toolbar-footer">
+				<a href="#"><div class="toolbar-tab tbar-tab-top">  <i class="tab-ico  "></i> <em class="footer-tab-text">顶部</em>  </div></a>
+				<div class=" toolbar-tab tbar-tab-feedback"> <a href="#" target="_blank"> <i class="tab-ico"></i> <em class="footer-tab-text ">反馈</em> </a> </div>
+			</div>
+			
+			<div class="toolbar-mini"></div>
+			
+		</div>
+		<div id="J-toolbar-load-hook"></div>
+	</div>
+</div>
     <div id="wrapper">
         <!--/. NAV TOP  -->
         <nav class="navbar navbar-default top-navbar" role="navigation">
@@ -40,6 +126,7 @@
                 </div>
             </div>
         </nav>
+        
         <!-- /. NAV SIDE  -->
         <nav class="navbar-default navbar-side" role="navigation" data-step="2" data-intro="导航与功能面板<p>屏幕左侧的面板是分析过程中不同结果图、文件的快速导航面板与图相关操作功能面板。</p><p>键盘快捷键：&rarr;</p>" data-position='right'>
             <div class="sidebar-collapse"  >
@@ -168,6 +255,25 @@
                 <div class="row" id="1-5" style="display:none" >
                     <a id="network-graph"></a>
                     <div class="col-md-12 col-sm-12 col-xs-12 ">
+                    	<script type="text/javascript">
+						    $(document).ready(function() {
+						    	$('#graph,#overlay').GalMenu({
+						    		'menu': 'GalDropDown'
+						    	})
+						    });
+						</script>
+                    	<div class="GalMenu GalDropDown" style="z-index: 10000;">
+							<div class="circle" id="gal">
+								<div class="ring">
+									<a href="javascript:void(0);" title="首页" class="menuItem">首页</a>
+									<a href="javascript:void(0);" target="_blank" title="博客" class="menuItem">博客</a>
+									<a href="javascript:void(0);" target="_blank" title="" class="menuItem">后宫</a>
+									<a href="javascript:void(0);" target="_blank" title="" class="menuItem">杂货</a>
+									<a href="javascript:void(0);" target="_blank" title="" class="menuItem">洗脑</a>
+									<a href="javascript:void(0);" target="_blank" title="留言" class="menuItem">留言</a>
+								</div>
+							</div>
+						</div>
                         <div class="panel panel-default">
                             <div class="panel-heading" >
                                 Forced Network Graph
@@ -176,6 +282,7 @@
                                 <div id="graph" style="height:700px"></div>
                             </div>
                         </div>
+                        <div id="overlay" style="opacity: 1; cursor: pointer;"></div>
                     </div>
                 </div>
                 <div class="row" id="1-1" style="display:none">
@@ -371,6 +478,17 @@
 	<script src="assets/js/easypiechart.js"></script>
 	<script src="assets/js/easypiechart-data.js"></script>
 	<script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+    <!--float nav bar-->
+    <script src = 'assets/js/nav.js' type="text/javascript"></script>
+    <!--right click menu-->
+    <script src = 'assets/js/GalMenu.js' type="text/javascript"></script>
+    <script type="text/javascript">
+	    var items = document.querySelectorAll('.menuItem');
+	    for (var i = 0,l = items.length; i < l; i++) {
+	    	items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+	    	items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+	    }
+	</script>
     <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>
      <!-- DATA TABLE SCRIPTS -->
