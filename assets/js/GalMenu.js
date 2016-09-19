@@ -26,7 +26,8 @@
                             }
                         });
                         $(".circle").removeClass("open");
-                        $("#overlay").hide()
+                        $("#overlay").hide();
+                        $("#option").css('display','none');
                     }
                 });
                 $this.on('contextmenu',
@@ -61,6 +62,7 @@
                     if ($("#gal").hasClass("open")) {
                         $(".circle").removeClass("open");
                         $("#overlay").hide();
+                        $("#option").hide();
                     } else {
                         $(".circle").addClass("open");
                         $("#overlay").show();
