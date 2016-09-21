@@ -23,7 +23,6 @@
     <script type="text/javascript" src="lib/dataTool.js"></script>
     <script type="text/javascript" src="lib/algorithm.js"></script>
     <script type="text/javascript" src="lib/dark.js"></script>
-    <script type="text/javascript" src="lib/intro.js"></script>
 </head>
 
 <body>
@@ -488,11 +487,19 @@
 	    	items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
 	    }
 	</script>
+    <!--name card-->    
+    <script src="assets/js/fsrTip.js" type="text/javascript"></script>
+
     <!-- Custom Js -->
-    <script src="assets/js/custom-scripts.js"></script>
+    <script src="assets/js/custom-scripts.js" type="text/javascript"></script>
      <!-- DATA TABLE SCRIPTS -->
-    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
-    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+    <script src="assets/js/dataTables/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="assets/js/dataTables/dataTables.bootstrap.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable();
+        });
+    </script>
     <!--tip bubble-->
     <script type="text/javascript">
         $(function(){
@@ -526,13 +533,9 @@
             });
         });
     </script>
-    <script>
-        $(document).ready(function () {
-            $('#dataTables-example').dataTable();
-        });
-    </script>
 
-    <script type="text/javascript">
+    <script src="assets/js/intro.js" type="text/javascript"></script>
+    <script >
     introJs().start().oncomplete(function() {
               alert("End of Introduction\nHave fun!");
             });
