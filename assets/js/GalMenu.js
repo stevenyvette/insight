@@ -12,14 +12,8 @@
                 settings = $.extend({},
                 GalMenu.defaults, o),
                 $menu = $('.' + settings.menu);
-                var options={
-								photo: "images/avtar.png", //图片路径
-								name: 'fsr',                 //姓名
-								sex: '男',                //性别
-								love: '女',               //爱好
-								remark: "模仿中"
-							}
-                $('body').prepend("<div id='user' class='user' style='display:none;z-index:1000;-webkit-box-sizing: none;box-sizing: none;'><span></span><div class='out'><div class='ins'><a href='#' title='查看资料'><img src='" + options.photo + "' alt='' /></a><div>名称：" + options.name + "<br />性别：" + options.sex + "<br />爱好：" + options.love + "<br />介绍：" + options.remark + "<br /><a href='#' class='btn btn-success btn-small' title='加关注'>+加关注</a>&nbsp;&nbsp;<a href='#' class='btn btn-success btn-small' title='加好友'>+加好友</a></div></div></div></div>");
+                
+                $('body').prepend("<div id='user' class='user' style='display:none;z-index:1000;-webkit-box-sizing: none;box-sizing: none;'>");
 	            var $btip = $("#user");
                 $this.on('click',
 	                function(e) {
@@ -38,8 +32,16 @@
 	                        $("#overlay").hide();
 	                        setTimeout(function(){$("#option").hide();},100);
 	                        $btip.hide();
-	//                      $("#option").css('display','none');
+	                        trans=undefined;
 	                    }else if(click!=undefined){
+	                    	var options={
+								photo: "images/avtar.png", //图片路径
+								name: click.name,                 //姓名
+								partners:promatrix[click.dataIndex][4],
+								importance: click.value,               //爱好
+								role:click.data.catagory,
+							}
+							$btip.html("<span></span><div class='out'><div class='ins'><a href='#' title='查看资料'><img src='" + options.photo + "' alt='' /></a><div>名称：" + options.name + "<br />性别：" + options.partners + "<br />爱好：" + options.importance + "<br />介绍：" + options.role + "<br /><a href='#' class='btn btn-success btn-small' title='加关注'>+加关注</a>&nbsp;&nbsp;<a href='#' class='btn btn-success btn-small' title='加好友'>+加好友</a></div></div></div></div>");
 	                    	GalMenu.getCoords(e);
 	                    	var add = 150;
 	                    	var top = Coords.clickY-225;
@@ -68,41 +70,44 @@
                 	function(e) {
                 		console.log(trans);
                 		$btip.hide();
-	                    e.preventDefault();
-	                    e.stopPropagation();
-	                    GalMenu.getCoords(e);
-	                    $('.GalMenu_close_me').stop(true, false).animate({
-	                        opacity: 0
-	                    },
-	                    {
-	                        duration: 100,
-	                        queue: false,
-	                        complete: function() {
-	                            $(this).css('display', 'none')
-	                        }
-	                    });
-	                    var add = 150;
-	                    var top = Coords.clientY - add,
-	                    left = ($('body')[0] === e.target) ? Coords.clickX + add: Coords.clientX - add;
-	                    $menu.css({
-	                        top: top + 'px',
-	                        left: left + 'px',
-	                        display: 'block'
-	                    }).stop(true, false).animate({
-	                        opacity: 1
-	                    },
-	                    {
-	                        duration: 100,
-	                        queue: false
-	                    });
-	                    if ($("#gal").hasClass("open")) {
-	                        $(".circle").removeClass("open");
-	                        $("#overlay").hide();
-	                        setTimeout(function(){$("#option").hide();},100);
-	                    } else {
-	                        $(".circle").addClass("open");
-	                        $("#overlay").show();
-	                    }
+                		if(trans!=undefined){
+	                    	e.preventDefault();
+		                    e.stopPropagation();
+		                    GalMenu.getCoords(e);
+		                    $('.GalMenu_close_me').stop(true, false).animate({
+		                        opacity: 0
+		                    },
+		                    {
+		                        duration: 100,
+		                        queue: false,
+		                        complete: function() {
+		                            $(this).css('display', 'none')
+		                        }
+		                    });
+		                    var add = 150;
+		                    var top = Coords.clientY - add,
+		                    left = ($('body')[0] === e.target) ? Coords.clickX + add: Coords.clientX - add;
+		                    $menu.css({
+		                        top: top + 'px',
+		                        left: left + 'px',
+		                        display: 'block'
+		                    }).stop(true, false).animate({
+		                        opacity: 1
+		                    },
+		                    {
+		                        duration: 100,
+		                        queue: false
+		                    });
+		                    if ($("#gal").hasClass("open")) {
+		                        $(".circle").removeClass("open");
+		                        $("#overlay").hide();
+		                        trans=undefined;
+		                        setTimeout(function(){$("#option").hide();},100);
+		                    } else {
+		                        $(".circle").addClass("open");
+		                        $("#overlay").show();
+		                    }
+		                }
 	                })		
             })
         },
