@@ -39,9 +39,10 @@
 								name: click.name,                 //姓名
 								partners:promatrix[click.dataIndex][4],
 								importance: click.value,               //爱好
-								role:click.data.catagory,
+								role:click.data.category,
 							}
-							$btip.html("<span></span><div class='out'><div class='ins'><a href='#' title='查看资料'><img src='" + options.photo + "' alt='' /></a><div>名称：" + options.name + "<br />性别：" + options.partners + "<br />爱好：" + options.importance + "<br />介绍：" + options.role + "<br /><a href='#' class='btn btn-success btn-small' title='加关注'>+加关注</a>&nbsp;&nbsp;<a href='#' class='btn btn-success btn-small' title='加好友'>+加好友</a></div></div></div></div>");
+	                    	/*删除和还原只显示一个*/
+							$btip.html("<span></span><div class='out'><div class='ins'><a href='#' title='查看资料'><img src='" + options.photo + "' alt='' /></a><div>名称：" + options.name + "<br />好友数：" + options.partners + "<br />重要度：" + options.importance + "<br />角色：" + options.role + "<br /><a href='#' class='btn btn-danger btn-small' title='删除'>删除</a>&nbsp;&nbsp;<a href='#' class='btn btn-success btn-small' title='取消' onclick='cancel()'>取消</a>&nbsp;&nbsp;<a href='#' class='btn btn-warning btn-small' title='还原'>还原</a></div></div></div></div>");
 	                    	GalMenu.getCoords(e);
 	                    	var add = 150;
 	                    	var top = Coords.clickY-225;
