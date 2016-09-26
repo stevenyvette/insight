@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="assets/css/tipbox.css">
     <link rel="stylesheet" href="assets/js/dataTables/dataTables.bootstrap.css" />
     <link rel="stylesheet" href="assets/css/introjs.css"/>
-    <link rel="stylesheet" href="assets/css/button.css"/>
     <link rel="stylesheet" href="assets/css/manhuaCardTip.css"/>
     <script type="text/javascript" src="lib/func.js"></script>
     <script type="text/javascript" src="lib/reshape.js"></script>
@@ -116,14 +115,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"  data-step="1" data-intro="欢迎来到Insight网络可视化分析平台！<p>请跟着学习向导一览使用技巧。</p><p>ps:键盘快捷键：&rarr;</p>" data-position='right'><strong>Insight.</strong></a>
+                <a class="navbar-brand" href="index.html" ><strong>Insight.</strong></a>
 			    <div id="sideNav" href=""><i class="fa fa-caret-right"></i>
                 </div>
             </div>
         </nav>
         
         <!-- /. NAV SIDE  -->
-        <nav class="navbar-default navbar-side" role="navigation" data-step="2" data-intro="导航与功能面板<p>屏幕左侧的面板是分析过程中不同结果图、文件的快速导航面板与图相关操作功能面板。</p><p>键盘快捷键：&rarr;</p>" data-position='right'>
+        <nav class="navbar-default navbar-side" role="navigation" >
             <div class="sidebar-collapse"  >
                 <ul class="nav" id="main-menu">
                     <li>
@@ -226,27 +225,24 @@
         <!--/. MAIN BODY -->
 		<div id="page-wrapper">
             <a id="head"></a>
-            <div class="header" > 
-                <h1 class="page-header" id="test">Network Visualization Demon</h1>
-                <div data-step="3" data-intro="导入图文件<p>可视化分析的第一步</br>导入相关图文件</br>方法一:直接选择文件目录打开</br>方法二:直接输入文件的相对路径</p>键盘快捷键：&rarr;" data-position='bottom'>
-                    <input type="file" accept=".gexf,.xml" onchange="get_filepath1()" id="filename" style="opacity:50%;width:100%" href="#network-graph" >
-                    <div class="form-group input-group" >
-                        <input type="text" class="form-control" placeholder="Enter the full name of the graph file. (.gexf  or .xml)" id='file-name'>
-                        <span class="input-group-btn" id="file-button">
-                            <button class="btn btn-default" type="button" onclick="get_filepath2()"><i class="fa fa-search"></i>
-                            </button>
-                        </span>
+            <div class="header" >
+                <div class="col-md-12" id="introduction" style="display:block;">
+                    <div class="jumbotron">
+                        <h1>Network Visualization Demon</h1>
+                        <p>sdfasdfasdf.</p>
+                        <a class="btn btn-primary btn-lg" type="file" accept=".gexf,.xml" id="filename" onclick="get_filepath()" href="#head">Select a network</a>
+                        </p>
                     </div>
-                
-                    <a id="open-graph-confirm"></a>
-        			<ol class="breadcrumb" style="height:44px" >
-                        <strong id="show-file-name" style="font-size: 19px;">Network ID:&nbsp&nbsp&nbsp</strong>
-        		    </ol>
                 </div>
+                <a id="open-graph-confirm"></a>
+	            <div class="col-md-12" id="network-id" style="display: none;top:10px">
+	    			<ol class="breadcrumb" style="height:54px" >
+	                    <strong id="show-file-name" style="font-size: 19px;">Network ID:&nbsp&nbsp&nbsp</strong>
+	    		    </ol>
+	    		</div>  
     		</div>
+            
             <div id="page-inner" >
-                <div class="row" id="tmp" style="height:400px,display:block" >
-                </div>
                 <div class="row" id="1-5" style="display:none" >
                     <a id="network-graph"></a>
                     <div class="col-md-12 col-sm-12 col-xs-12 ">
