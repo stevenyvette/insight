@@ -14,10 +14,10 @@
                 $menu = $('.' + settings.menu);
                 
                 $('body').prepend("<div id='user' class='user' style='display:none;z-index:1000;-webkit-box-sizing: none;box-sizing: none;'>");
-	            var $btip = $("#user");
+	            var $btip = $(".user");
                 $this.on('click',
 	                function(e) {
-	                    if (e.which !== 3 && $(e.target).parents('.GalMenu').length < 1 && settings.click_to_close&&click==undefined) {
+	                    if (e.which !== 3 && $(e.target).parents('.GalMenu').length < 1 && settings.click_to_close&&click_node==undefined||(click_node!=undefined&&click_node==check)) {
 	                        $this.find('.GalMenu').stop(true, false).animate({
 	                            opacity: 0
 	                        },
@@ -33,16 +33,17 @@
 	                        setTimeout(function(){$("#option").hide();},100);
 	                        $btip.hide();
 	                        trans=undefined;
-	                    }else if(click!=undefined){
+	                    }else if(click_node!=undefined&&click_node!=check){
+	                    	check=click_node;
 	                    	var options={
 								photo: "images/avtar.png", //图片路径
-								name: click.name,                 //姓名
-								partners:promatrix[click.dataIndex][4],
-								importance: click.value,               //爱好
-								role:click.data.category,
-							}
+								name: click_node.name,                 //姓名
+								partners:promatrix[click_node.dataIndex][4],
+								importance: click_node.value,               //爱好
+								role:click_node.data.category,
+							};
 	                    	/*删除和还原只显示一个*/
-							$btip.html("<span></span><div class='out'><div class='ins'><a href='#' title='查看资料'><img src='" + options.photo + "' alt='' /></a><div>名称：" + options.name + "<br />好友数：" + options.partners + "<br />重要度：" + options.importance + "<br />角色：" + options.role + "<br /><a href='#' class='btn btn-danger btn-small' title='删除'>删除</a>&nbsp;&nbsp;<a href='#' class='btn btn-success btn-small' title='取消' onclick='cancel()'>取消</a>&nbsp;&nbsp;<a href='#' class='btn btn-warning btn-small' title='还原'>还原</a></div></div></div></div>");
+							$btip.html("<span></span><div class='out'><div class='ins'><a href='#' title='查看资料'><img src='" + options.photo + "' alt='' /></a><div>名称：" + options.name + "<br />好友数：" + options.partners + "<br />重要度：" + options.importance + "<br />角色：" + options.role + "<br /><a class='btn btn-danger btn-small' title='删除' onclick='left_click_delete()'>删除</a>&nbsp;&nbsp;<a href='#' class='btn btn-success btn-small' title='取消' onclick='cancel()'>取消</a>&nbsp;&nbsp;<a class='btn btn-warning btn-small' title='还原'>还原</a></div></div></div></div>");
 	                    	GalMenu.getCoords(e);
 	                    	var add = 150;
 	                    	var top = Coords.clickY-225;
@@ -58,13 +59,13 @@
 			                    top: top + 'px',
 	                        	left: left + 'px',
 			                }).show();
-			                click=undefined;
 	                   };
 	                   $btip.off().on('mouseover', function () {
-					            $btip.show();
-					        }).on('mouseout', function () {
-					            $btip.hide();
-					        });
+				            $btip.show();
+				        }).on('mouseleave', function () {
+				            $btip.hide();
+				            click_node=undefined;
+				        });
                 });
                 
                 $this.on('contextmenu',
