@@ -70,7 +70,7 @@
                 
                 $this.on('contextmenu',
                 	function(e) {
-                		console.log(trans);
+                		//console.log(trans);
                 		$btip.hide();
                 		if(trans!=undefined){
 	                    	e.preventDefault();
