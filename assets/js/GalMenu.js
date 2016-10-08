@@ -43,7 +43,7 @@
 								role:click_node.data.category,
 							};
 	                    	/*删除和还原只显示一个*/
-							$btip.html("<span></span><div class='out'><div class='ins'><a href='#' title='查看资料'><img src='" + options.photo + "' alt='' /></a><div>名称：" + options.name + "<br />好友数：" + options.partners + "<br />重要度：" + options.importance + "<br />角色：" + options.role + "<br /><a class='btn btn-danger btn-small' title='删除' onclick='left_click_delete()'>删除</a>&nbsp;&nbsp;<a href='#' class='btn btn-success btn-small' title='取消' onclick='cancel()'>取消</a>&nbsp;&nbsp;<a class='btn btn-warning btn-small' title='还原'>还原</a></div></div></div></div>");
+							$btip.html("<span></span><div class='out'><div class='ins'><a title='人物肖像'><img src='" + options.photo + "' alt='' /></a><div>名称：" + options.name + "<br />好友数：" + options.partners + "<br />重要度：" + options.importance + "<br />角色：" + options.role + "<br /><a class='btn btn-danger btn-small' title='删除' onclick='left_click_delete()'>删除</a>&nbsp;&nbsp;<a class='btn btn-success btn-small' title='取消' onclick='cancel()'>取消</a></div></div></div></div>");
 	                    	GalMenu.getCoords(e);
 	                    	var add = 150;
 	                    	var top = Coords.clickY-225;
