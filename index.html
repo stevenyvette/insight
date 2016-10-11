@@ -270,7 +270,25 @@
                                 Forced Network Graph
                             </div>
                             <div class="panel-body">
-                                <div id="graph" style="height:700px"></div>
+                            	<ul class="nav nav-pills" id="nav-example" style="display:none">
+                                    <li class="active"><a href="#graph-nav" data-toggle="tab" onclick="graph()">Graph after removing</a>
+                                    </li>
+                                    <li class=""><a href="#graph-1-nav" data-toggle="tab" onclick="graph_1()">Graph after reshaping</a>
+                                    </li>
+                                    <li class=""><a href="#graph-ori-nav" data-toggle="tab" onclick="graph_ori()">The origin graph</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                	<div class="tab-pane fade active in" id="graph-nav" >
+                                		<div id="graph" style="height:700px"></div>
+                                	</div>
+                                    <div class="tab-pane fade" id="graph-1-nav" >
+                                        <div id="graph-1" style="height:700px"></div>
+                                    </div>
+                                    <div class="tab-pane fade" id="graph-ori-nav" >
+                                        <div id="graph-ori" style="height:700px"></div>
+                                    </div>
+                                </div>
                             </div>
                             <div id="overlay" style="opacity: 1; cursor: pointer;"></div>
                         </div>
