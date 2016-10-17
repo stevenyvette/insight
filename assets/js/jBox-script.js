@@ -1,5 +1,3 @@
-var noticeN3Volume = 100;
-
 jQuery(document).ready(function() {
     
     var colorsN2 = ['red', 'green', 'blue', 'yellow'];
@@ -25,7 +23,7 @@ jQuery(document).ready(function() {
     var titlesN3 = ['Oops', 'Well done', 'Reminder', 'Attention'];
     var contentsN3 = ['Sorry, something went wrong', 'You perfectly clicked a button', 'Don\'t forget to click the button one more time', 'Take care out there'];
     var currentColorN3 = 0;
-    jQuery('#filename').click(function() {
+    jQuery('#graph').click(function() {
         new jBox('Notice', {
             attributes: {
                 x: 'right',
@@ -33,7 +31,6 @@ jQuery(document).ready(function() {
             },
             theme: 'NoticeBorder',
             color: 'black',
-            volume: noticeN3Volume,
             animation: {
                 open: 'slide:top',
                 close: 'slide:right'
