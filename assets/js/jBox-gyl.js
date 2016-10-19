@@ -1,7 +1,7 @@
 var currentColorN3 = 0;
-var colorsN3 = ['green','yellow', 'red' ];
-var titlesN3 = ['Third', 'Second', 'Best'];
-var contentsN3 = ['Third Candidate', 'Second Candidate', 'Best Candidate aaaaaaaaaaaaaaaaaaaaaa'];
+var colorsN3 = ['blue','green','yellow', 'red' ];
+var titlesN3 = ['More Information','Third Candidate', 'Second Candidate', 'Best Candidate'];
+var contentsN3 = ['See Candidate pie chart below','Third Candidate', 'Second Candidate', 'Best Candidate'];
 
 function show_jbox(){
     
