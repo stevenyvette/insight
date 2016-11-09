@@ -405,7 +405,8 @@ body {
   max-width: 1200px;
   padding: 20px;
   margin: 0 auto;
-  overflow: hidden; }
+  overflow: hidden; 
+  top:200px;}
   .timeline:after {
     content: "";
     position: absolute;
