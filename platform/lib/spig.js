@@ -62,7 +62,7 @@ jQuery(document).ready(function ($) {
 //鼠标在某些元素上方时
 jQuery(document).ready(function ($) {
     $('.navbar-header a').mouseover(function () {//标题被点击时
-        showMessage('<span style="color:#0099cc;">' + $(this).text() + '</span></br>一个基于可视化的网络重塑分析平台');
+        showMessage('<span style="color:#0099cc;">' + $(this).text() + '</span></br>一个具有网络重塑功能的可视化平台');
     });
     $('#air-tip').mouseover(function () {
         showMessage('<span style="color:#0099cc;">Air Traffic</span></br>中国空域网络图');
@@ -74,14 +74,14 @@ jQuery(document).ready(function ($) {
         showMessage('<span style="color:#0099cc;">Train Boming</span></br>2003年3·11马德里火车爆炸袭击的恐怖组织网络');
     });
     $('#network-tip').mouseover(function () {
-        showMessage('<span style="color:#0099cc;">Network 1</span>更多网络更新中');
+        showMessage('<span style="color:#0099cc;">Network 1</span></br>更多网络更新中');
     });
     $('#filename').mouseover(function () {
-        showMessage('打开属于自己的网络图！');
+        showMessage('打开其他的网络图！</br><span style="color:red;">网络格式有严格限定</br>不建议使用</span>');
     });
 
-    $('#prev-page').mouseover(function(){
-        showMessage('要翻到上一页吗?');
+    $('#main-menu').mouseover(function(){
+        showMessage('这是侧面快速导航栏</br>由上自下依次为：</br><span style="color:#0099cc;">主面板</span></br><span style="color:#ec971f;">网络可视化图</span></br><span style="color:#0099cc;">网络基本信息</span></br><span style="color:#ec971f;">节点操作</span></br><span style="color:#0099cc;">更多信息</span></br><span style="color:#ec971f;">帮助页面</span></br><span style="color:#0099cc;">向导小助手</span>');
     });
     $('#next-page').mouseover(function(){
         showMessage('要翻到下一页吗?');
