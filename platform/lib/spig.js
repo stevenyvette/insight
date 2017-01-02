@@ -24,7 +24,7 @@ jQuery(document).ready(function ($) {
     //$(".mumu").jrumble({rangeX: 2,rangeY: 2,rangeRot: 1});
     $(".mumu").mouseover(function () {
        $(".mumu").fadeTo("300", 0.3);
-       msgs = ["我隐身了，你看不到我"];
+       msgs = ["欢迎来到<i style='color:#0099cc;'><a href='../index.html'>insight. </a></i></br>一个专注网络重塑的可视化平台！"];
        var i = Math.floor(Math.random() * msgs.length);
         showMessage(msgs[i]);
     });
@@ -38,15 +38,15 @@ jQuery(document).ready(function ($) {
     if (isindex) { //如果是主页
         var now = (new Date()).getHours();
         if (now > 0 && now <= 6) {
-            showMessage(' 你是夜猫子呀？还不睡觉，明天起的来么你？', 6000);
+            showMessage(' <span style="color:#0099cc;">凌晨啦！</span></br>你是夜猫子呀？还不睡觉，明天起的来么你？', 6000);
         } else if (now > 6 && now <= 11) {
-            showMessage(' 早上好，早起的鸟儿有虫吃噢！一大早就开始学术，给你个赞！', 6000);
+            showMessage(' <span style="color:#0099cc;">早上好~</span></br>早起的鸟儿有虫吃噢！一大早就开始学术，给你个赞！', 6000);
         } else if (now > 11 && now <= 14) {
-            showMessage(visitor + ' 中午好！科研也要吃饭哟！', 6000);
+            showMessage(visitor + ' <span style="color:#0099cc;">中午好~</span></br>科研也要吃饭哟！', 6000);
         } else if (now > 14 && now <= 18) {
-            showMessage(' 午后的时光真难熬！注意劳逸结合！', 6000);
+            showMessage(' <span style="color:#0099cc;">下午好~</span></br>午后的时光真难熬！注意劳逸结合！', 6000);
         } else {
-            showMessage(' 快来逗我玩吧！', 6000);
+            showMessage('<span style="color:#0099cc;">晚上好~</span></br>要抓紧一天最后的时光哟！', 6000);
         }
     }
     $(".spig").animate({
@@ -57,6 +57,12 @@ jQuery(document).ready(function ($) {
 	    queue: false,
 	    duration: 1000
 	});
+});
+
+jQuery('#1-5').ready(function ($) {
+    $('#1-5').mouseover(function () {
+        showMessage('这是网络的可视化图，在图中可以通过鼠标<i style="color:#0099cc;">左</i>或<i style="color:#0099cc;">右击</i>动作触发节点操作');
+    });
 });
 
 //鼠标在某些元素上方时
@@ -83,36 +89,43 @@ jQuery(document).ready(function ($) {
     $('#main-menu').mouseover(function(){
         showMessage('这是侧面快速导航栏</br>由上自下依次为：</br><span style="color:#0099cc;">主面板</span></br><span style="color:#ec971f;">网络可视化图</span></br><span style="color:#0099cc;">网络基本信息</span></br><span style="color:#ec971f;">节点操作</span></br><span style="color:#0099cc;">更多信息</span></br><span style="color:#ec971f;">帮助页面</span></br><span style="color:#0099cc;">向导小助手</span>');
     });
-    $('#next-page').mouseover(function(){
-        showMessage('要翻到下一页吗?');
+    $('#show-file-name').mouseover(function(){
+        showMessage('<span style="color:#ec971f;">'+$(this).text()+'</span>');
     });
-    $('#index-links li a').mouseover(function () {
-        showMessage('去 <span style="color:#0099cc;">' + $(this).text() + '</span> 逛逛');
+    $('#1-5').mouseover(function () {
+        showMessage('这是网络的可视化图，在图中可以通过鼠标<i><span style="color:#0099cc;">左击</span></i>或<i><span style="color:#0099cc;">右击</span></i>动作触发节点操作');
     });
-    $('.comments').mouseover(function () {
-        showMessage('<span style="color:#0099cc;">' + visitor + '</span> 向评论栏出发吧！');
+    $('#1-1-1').mouseover(function(){
+        showMessage('');
     });
-    $('#submit').mouseover(function () {
-        showMessage('确认提交了么？');
+    $('#1-1-1').mouseover(function(){
+        showMessage('整个网络节点数为:</br><big><span style="color:#ec971f;">'+count+'</span></big>');
     });
-    $('#s').mouseover(function () {
-        showMessage('输入你想搜索的关键词再按Enter(回车)键就可以搜索啦!');
+    $('#1-1-2').mouseover(function(){
+        showMessage('整个网络连边数为:</br><big><span style="color:#ec971f;">'+link_number+'</span></big>');
     });
-    $('#go-prev').mouseover(function () {
-        showMessage('点它可以后退哦！');
+    $('#1-1-3').mouseover(function(){
+        showMessage('整个网络效率为:</br><big><span style="color:#ec971f;">'+eff+'</span></big>');
     });
-    $('#go-next').mouseover(function () {
-        showMessage('点它可以前进哦！');
+    $('#1-1-4').mouseover(function(){
+        showMessage('整个网络连通度为:</br><big><span style="color:#ec971f;">100%</span></big>');
     });
-    $('#refresh').mouseover(function () {
-        showMessage('点它可以重新载入此页哦！');
+    $('#2-1-1').mouseover(function () {
+        showMessage('这里按照<i><span style="color:#0099cc;">替换概率的高低</span></i>从左到右以连线图的方式依次给出对应节点，');
     });
-    $('#go-home').mouseover(function () {
-        showMessage('点它就可以回到首页啦！');
+    $('#2-1-2').mouseover(function () {
+        showMessage('此处的饼图和左边的连线图有着异曲同工之妙，饼图用<i><span style="color:#0099cc;">饼块的大小</span></i>来表示节点的替换概率大小。');
     });
-    $('#addfav').mouseover(function () {
-        showMessage('点它可以把此页加入书签哦！');
+    $('#1-2').mouseover(function () {
+        showMessage('环形布局的网络可视化图');
     });
+    $('#1-4').mouseover(function () {
+        showMessage('此处整理罗列给出网络的<i><span style="color:#0099cc;">所有节点以及节点包含的属性</span></i>，并以表格的形式呈现给用户。值得一提的是，表格带有<span style="color:#ec971f;">自动排序</span>和<span style="color:#ec971f;">检索功能</span>。请用户自行操作~');
+    });
+    $('#1-3').mouseover(function () {
+        showMessage("这是<i style='color:#0099cc;'><a href='../index.html'>insight. </a></i> 平台使用的重塑算法中节点重要性质<span style='color:#ec971f;'>POCC</span>值的柱状-折现图(可切换),通过与传统<span style='color:#ec971f;'>CC</span>值的对比，说明算法的一切优势。");
+    });
+
     $('#nav-two a').mouseover(function () {
         showMessage('嘘，从这里可以进入控制面板的哦！');
     });
