@@ -23,6 +23,7 @@
     <script type="text/javascript" src="lib/reshape.js"></script>
     <script type="text/javascript" src="lib/echarts.js"></script>
     <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="layer/layer.js"></script>
     <script type="text/javascript" src="lib/dataTool.js"></script>
     <script type="text/javascript" src="lib/algorithm.js"></script>
     <script type="text/javascript" src="lib/dark.js"></script>
@@ -32,6 +33,28 @@
         var isindex = true;
         var visitor = true;
     </script>
+    <script>
+		layer.open({
+			  type: 1,
+			  title: false,
+			  closeBtn: false,
+			  area: '300px;',
+			  shade: 0.8,
+			  id: 'LAY_layuipro', //设定一个id，防止重复弹出
+			  resize: false,
+			  btn: ['我是小白', '残忍拒绝'],
+			  btnAlign: 'c',
+			  moveType: 1, //拖拽模式，0或者1
+			  content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">本页面是<i style="color:#0099cc;"><a href="../index.html">insight. </a></i>平台的操作界面<br>建议使用前先查看帮助文档哟！~</div>',
+			  success: function(layero){
+			    var btn = layero.find('.layui-layer-btn');
+				btn.find('.layui-layer-btn0').attr({
+			  		href: 'help/help.html',
+			  		target: '_blank',
+			    });
+			  }
+			});
+	</script>
 </head>
 
 <body>
