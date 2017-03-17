@@ -27,9 +27,14 @@ function efficiency(){
     //console.log("efficiency of the network is: "+eff);
 }
 
-function re_efficiency () {
-    for(var i=0;i<count;i++)
-        re_eff+= re_promatrix[i][2] * re_promatrix[i][4]
+function re_efficiency (r) {
+	re_eff=0;
+    for(var i=0;i<count;i++){
+    	if(i!=r){
+        	re_eff+= re_promatrix[i][2] * re_promatrix[i][4];
+        }
+    }
+    console.log(re_eff);
 }
 
 //Dijkstra算法，传入源顶点

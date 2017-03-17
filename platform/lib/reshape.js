@@ -602,6 +602,7 @@ function show_rv_rp(delete_node_id){
         else{
             break;
         }
+        console.log(promatrix[dex][1]+' '+ReplacementValue(dex,delete_node_id,count).toFixed(2)+' '+rp_value3[i].toFixed(2));
     }
     console.log('best candidate: '+predict);
     //console.log(top_three);
@@ -957,7 +958,7 @@ function update_table(){
     });
 }
 
-function reshape_matrix(r){
+function reshape_matrix(r,graph){
     graph.links.forEach(function(edge){
         var i = dic[edge.source];
         var j = dic[edge.target];
@@ -979,7 +980,5 @@ function reshape_matrix(r){
         else
             re_promatrix[node.id][0] = r;
     });
-
-    //console.log(re_adjmatrix);
-    //console.log(re_promatrix);
+	re_efficiency(r);
 }
