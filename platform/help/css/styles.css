@@ -8,8 +8,8 @@
 
 body {
   font-family: "Source Sans Pro", sans-serif;
-  color: black;
-  background-color: linear-gradient(top, red, rgba(0, 0, 255, 0.5));
+  color: #F0FFFF;
+  font-style:italic;
   font-size: 15px;
   padding-bottom: 50px; }
 
