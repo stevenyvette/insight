@@ -1,2 +1,1 @@
-# insight
-a network visualization platform 
+# insight-platform

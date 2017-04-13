@@ -9,7 +9,7 @@
 body {
   font-family: "Source Sans Pro", sans-serif;
   color: black;
-  background-color: #eef2f2;
+  background-color: linear-gradient(top, red, rgba(0, 0, 255, 0.5));
   font-size: 15px;
   padding-bottom: 50px; }
 
@@ -396,7 +396,16 @@ label {
   background-color: rgba(0, 0, 0, 0.05); }
 
 body {
-  background-color: #5bbcd5;
+  /*background-color: #5bbcd5;*/
+  /*background-color: #b1e0fa;  
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ebeef2), to(#b1e0fa));  
+    background-image: -webkit-linear-gradient(top, #ebeef2, #b1e0fa);  
+    background-image: -moz-linear-gradient(top, #ebeef2, #b1e0fa);  
+    background-image: -ms-linear-gradient(top, #ebeef2, #b1e0fa);  
+    background-image: -o-linear-gradient(top, #ebeef2, #b1e0fa);  
+    background-image: linear-gradient(top, #ebeef2, #b1e0fa);   */
+   background-image:url('../img/bg.gif');
+   /*background-size: cover;*/
   padding: 5em 0; }
 
 .timeline {
