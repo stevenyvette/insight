@@ -1,9 +1,7 @@
 /*------------------------------------------------------
-    Author : www.webthemez.com
-    License: Commons Attribution 3.0
-    http://creativecommons.org/licenses/by/3.0/
+    左侧折叠菜单动画
+    
 ---------------------------------------------------------  */
-
 (function ($) {
     "use strict";
     var mainApp = {
@@ -21,9 +19,6 @@
                 }
             });
 
-
-            
-           
         
             $('.bar-chart').cssCharts({type:"bar"});
             $('.donut-chart').cssCharts({type:"donut"}).trigger('show-donut-chart');

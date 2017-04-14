@@ -192,7 +192,7 @@ function show(file){
             click_node=undefined;
             click_link=undefined;
             if(params.dataType=="node"){
-            	click_node=params;
+            		click_node=params;
             }else{
 	          	click_link=params;
             }

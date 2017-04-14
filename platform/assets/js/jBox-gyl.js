@@ -1,3 +1,6 @@
+/*
+*右侧弹出浮动框
+*/
 var currentColorN3 = 0;
 var colorsN3 = ['red','yellow','blue','green' ];
 var titlesN3 = ['More Information','Third Candidate', 'Second Candidate', 'Best Candidate'];

@@ -1,3 +1,5 @@
+/*导航栏折叠菜单*/
+
 ;(function ($, window, document, undefined) {
 
     var pluginName = "metisMenu",

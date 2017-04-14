@@ -1,4 +1,4 @@
-/* nav.js zhaokun 20150709 主要应用于首页右侧导航栏 */
+/* 右侧导航栏（回到首页、反馈） */
 $(document).ready(function(){
 	$('.tbar-cart-item').hover(function (){ $(this).find('.p-del').show(); },function(){ $(this).find('.p-del').hide(); });
 	$('.jth-item').hover(function (){ $(this).find('.add-cart-button').show(); },function(){ $(this).find('.add-cart-button').hide(); });

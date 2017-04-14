@@ -20,9 +20,6 @@
                     $('div.sidebar-collapse').removeClass('collapse')
                 }
             });
-			
- 
-
             /* MORRIS BAR CHART
 			-----------------------------------------*/
             Morris.Bar({
@@ -186,7 +183,6 @@
            
      
         },
-
         initialization: function () {
             mainApp.initFunction();
 

@@ -1,3 +1,6 @@
+/*
+ * 鼠标右键菜单动画
+ */
 ; (function($) {
     var GalMenu = {
         defaults: {

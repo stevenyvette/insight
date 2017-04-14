@@ -58,24 +58,16 @@ function Dijkstra(v,r,n){        //Dijkstra算法，传入源顶点
      while(q.length!=0)               //算法的核心，队列空说明完成了操作
      {
          var cd = q.pop();
-         //node cd = q.top();          //取最小估算距离顶点
-
          var u = cd.id;
-
          if(visited[u])
              continue;
-
          visited[u] = true;
-
          //松弛操作·
-
          for(var j = 0; j <n; j++) //找所有与他相邻的顶点，进行松弛操作，更新估算距离，压入队列。
          {
-            //console.log(j);
              if(j != u && !visited[j] && d[j].weight > d[u].weight+adjmatrix[u][j]&&adjmatrix[u][j]!=0)
              {
                 d[j].weight = d[u].weight+adjmatrix[u][j];
-                //cout<<j<<" "<<d[j].weight<<endl;
                 parent[j] = u;
                 q.push(d[j]);
             }
@@ -383,7 +375,6 @@ function Candidate(r,k,count){
     candidate_chart.setOption(option_candidate);
     window.onresize = candidate_chart.resize;
 
-
     for(var i=0;i<count;i++){
         if(i!=r)
             if(promatrix[i][2]<=promatrix[r][2])
@@ -396,20 +387,14 @@ function Candidate(r,k,count){
 
     if(!flag){
         console.log("There is no candidate for the node "+r);
-        //ui->result_cal->append(a);
     }
     else{
         console.log("The Candidate Set of node "+r+" is");
-        //ui->result_cal->append(a);
 
         var b="";
         for(var i=0;i<count;i++)
             if(candidate[i]!=0)
                 b = b + candidate[i] + " ";
-        //ui->result_cal->append(b);
         console.log(b);
     }
-
-
-    //ui->result_cal->append("");
 }

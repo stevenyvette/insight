@@ -2,16 +2,16 @@ var filename=""
 
 function get_filepath(text){
 	show(text);
+	filename=text
 	document.getElementById("introduction").style.display="none";
 	document.getElementById("network-id").style.display="block";
 }
 
 function get_filepath_more(){
-	filename = document.getElementById("filename").files[0];
-	show(filename.name);
+	filename = document.getElementById("filename").files[0].name;
+	show(filename);
 	document.getElementById("introduction").style.display="none";
 	document.getElementById("network-id").style.display="block";
-
 }
 
 function set_block_1(){
@@ -108,7 +108,6 @@ function node_action(id){
 	var se=confirm("Make sure to remove this node: \n\t\t"+promatrix[id][1]);
 	if (se==true){
 		node_delete(id);
-		//window.location.hash="#node-delete-confirm"; 
 		window.location.hash="#open-graph-confirm";
 		var rp_value2 = rp_value.concat();
 	    rp_value2.sort(function(a,b){
@@ -120,8 +119,7 @@ function node_action(id){
 	            contentsN3[3-i] = 'PR: '+rp_value2[i].toFixed(8)+''; 
 	        }
 
-	    }
-
+	   }
 		setTimeout("show_jbox()",1500);
 		setTimeout("show_jbox()",2000);
 		setTimeout("show_jbox()",2500);
@@ -137,6 +135,16 @@ function link_action(source,target){
 	}
 }
 
+
+
+function left_click_delete(){
+	var id = parseInt(click_node.data.id);
+	node_action(id);
+	$('.user').hide();
+	click_node=undefined;
+}
+
+//右键功能菜单实现函数
 function right_click_delete(){
 	var id = parseInt(trans.data.id);
 	node_action(id);
@@ -144,13 +152,6 @@ function right_click_delete(){
 	$("#overlay").hide();
 	$("#option").hide();
 	trans={};
-}
-
-function left_click_delete(){
-	var id = parseInt(click_node.data.id);
-	node_action(id);
-	$('.user').hide();
-	click_node=undefined;
 }
 
 function cancel(){
@@ -165,7 +166,22 @@ function cancel(){
 
 function info(){
 	var id = parseInt(trans.data.id);
-	
+	$(".circle").removeClass("open");
+	$("#overlay").hide();
+	$("#option").hide();
+	layer.open({
+		type: 1,
+		title: false,
+		closeBtn: false,
+		area: '300px;',
+		shade: 0.8,
+		id: 'LAY_layuipro2', //设定一个id，防止重复弹出
+		resize: false,
+		btn: ['我知道了'],
+		btnAlign: 'c',
+		moveType: 1, //拖拽模式，0或者1
+		content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;"><div align="center"><img src="images/avtar.png" /></div></br><div align="center">名称：' + trans.name + "<br />好友数：" + promatrix[trans.dataIndex][4] + "<br />重要度：" + trans.value + '<br />角色：' + trans.data.category + '</div></div>',
+	});
 }
 
 function refresh(){
@@ -174,27 +190,28 @@ function refresh(){
 }
 
 function tbd(){
-	alert("To Be Determined");
+//	alert("To Be Determined");
 	$(".circle").removeClass("open");
 	$("#overlay").hide();
 	$("#option").hide();
+	layer.open({
+		type: 1,
+		title: false,
+		closeBtn: false,
+		area: '300px;',
+		shade: 0.8,
+		id: 'LAY_layuipro2', //设定一个id，防止重复弹出
+		resize: false,
+		btn: ['我知道了'],
+		btnAlign: 'c',
+		moveType: 1, //拖拽模式，0或者1
+		content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #F09B22; font-weight: 300;text-align:center">更多功能完善中<br><br><i>~敬请期待~</i></div>',
+	});
 }
 
 function help(){
-	window.open("help.html");
+	window.open("help/help.html");
 	$(".circle").removeClass("open");
 	$("#overlay").hide();
 	$("#option").hide();
-}
-
-function name_card() {
-	/*$(".active-menu").fsrTip({
-		Event: 'click',             //事件
-						 //箭头指向上(t)、箭头指向下(b)、箭头指向左(l)、箭头指向右(r)
-		photo: "images/avtar.png", //图片路径
-		name: 'fsr',                 //姓名
-		sex: '男',                //性别
-		love: '女',               //爱好
-		remark: "模仿中"
-	});*/
 }

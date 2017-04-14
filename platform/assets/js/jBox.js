@@ -1,5 +1,6 @@
 /*
----
+*右侧弹出浮动框
+* 
 description: jBox is a powerful and flexible jQuery plugin, taking care of all your modal windows, tooltips, notices and more.
 
 authors: Stephan Wagner (http://stephanwagner.me)
