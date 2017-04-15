@@ -1,7 +1,7 @@
 /*
  * 鼠标右键菜单动画
  */
-; (function($) {
+(function($) {
     var GalMenu = {
         defaults: {
             click_to_close: true,
