@@ -125,22 +125,26 @@ jQuery(document).ready(function ($) {
     $('#1-3').mouseover(function () {
         showMessage("这是<i style='color:#0099cc;'><a href='../index.html'>insight. </a></i> 平台使用的重塑算法中节点重要性质<span style='color:#ec971f;'>POCC</span>值的柱状-折现图(可切换),通过与传统<span style='color:#ec971f;'>CC</span>值的对比，说明算法的一切优势。");
     });
+    $('#global-operation').mouseover(function(){
+        showMessage('在该区域可以选择刷新当前页面、重置可视化网络图等功能');
+    });
 
-    $('#nav-two a').mouseover(function () {
-        showMessage('嘘，从这里可以进入控制面板的哦！');
-    });
-    $('.post-category a').mouseover(function () {
-        showMessage('点击查看此分类下得所有文章');
-    });
-    $('.post-heat a').mouseover(function () {
-        showMessage('点它可以直接跳到评论列表处.');
-    });
-    $('#tho-shareto span a').mouseover(function () {
-        showMessage('你知道吗?点它可以分享本文到'+$(this).attr('title'));
-    });
-    $('#switch-to-wap').mouseover(function(){
-        showMessage('点击可以切换到手机版博客版面');
-    });
+//  $('#nav-two a').mouseover(function () {
+//      showMessage('嘘，从这里可以进入控制面板的哦！');
+//  });
+//  $('.post-category a').mouseover(function () {
+//      showMessage('点击查看此分类下得所有文章');
+//  });
+//  $('.post-heat a').mouseover(function () {
+//      showMessage('点它可以直接跳到评论列表处.');
+//  });
+//  $('#tho-shareto span a').mouseover(function () {
+//      showMessage('你知道吗?点它可以分享本文到'+$(this).attr('title'));
+//  });
+//  $('#switch-to-wap').mouseover(function(){
+//      showMessage('点击可以切换到手机版博客版面');
+//  });
+    
 });
 
 

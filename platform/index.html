@@ -163,16 +163,16 @@
 	            <div class="header">
 	                <div class="col-md-12" id="introduction" style="display:block;">
 	                    <div class="jumbotron">
-	                        <h1>Network Reshaping Platform</h1>
-	                        <p>insight, a visualization-based network reshaping platform.</p>
-	                        <p>Select a Network :</p>
+	                        <h1>Welcome to <i style="color:#F09B22;">insight. !</i></h1>
+	                        <br />
+	                        <h3>A visualization platform for network reshaping problem.</h3>
+	                        <p>To begin our trip,<br /><strong>Select a Network :</strong></p>
 	                        <a id="les-tip" class="btn btn-primary btn-lg" onclick="get_filepath('les-miserables.gexf')" href="#head">Les Miserables</a>
 	                        <a id="train-tip" class="btn btn-primary btn-lg" onclick="get_filepath('train.gexf')" href="#head">Train Boming</a>
 	                        <a id="air-tip" class="btn btn-primary btn-lg" onclick="get_filepath('airtraffic.gexf')" href="#head">Air Traffic</a>
 	                        <a id="network-tip" class="btn btn-info btn-lg" onclick="get_filepath('train.gexf')" href="#head">Network 1</a>
 	                    		<br /><br />
 	                        <a class="btn btn-warning btn-lg"><input type="file" accept=".gexf,.xml" id="filename" onchange="get_filepath_more()" href="#head" style="opacity:0;position:absolute;cursor:pointer;z-index:100" />Select other networks</a>
-	                       </p>
 	                    </div>
 	                </div>
 	                <a id="open-graph-confirm"></a>
@@ -206,11 +206,12 @@
 				    		    		<!--<div class="alert alert-info"></div>-->
 				    		    </div>
 				    		    <div class="col-lg-4">
-				    		    		<div class="alert alert-info">
-				    		    			<h4>Buttons With Icons</h4>   
-				    		    			<button class="btn btn-default"><i class=" fa fa-refresh "></i> Refresh</button>
+				    		    		<div class="alert alert-info" id="global-operation">
+				    		    			<h4>Global Operation</h4>
+				    		    			<br />
+				    		    			<button class="btn btn-default" onclick='location.reload()'><i class=" fa fa-refresh "></i> Refresh</button>
 									<button class="btn btn-primary"><i class="fa fa-edit "></i> Edit</button>
-									<button class="btn btn-danger"><i class="fa fa-pencil"></i> Reset</button>
+									<button class="btn btn-danger" onclick="show(filename)"><i class="fa fa-pencil"></i> Reset</button>
 				    		    		</div>
 				    		    </div>
 				    		</div>
@@ -242,15 +243,18 @@
 							</div>
 	                        <div class="panel panel-default">
 	                            <div class="panel-heading" >
-	                                Forced Network Graph
+	                                Visualized Network Graph
 	                            </div>
 	                            <div class="panel-body">
 	                            		<ul class="nav nav-pills" id="nav-example" style="display:none">
-	                                    <li class="active"><a href="#graph-nav" data-toggle="tab" onclick="graph()">Graph after removing</a>
+	                                    <li class="active">
+	                                    	<a href="#graph-nav" data-toggle="tab" onclick="graph()">Graph after removing</a>
 	                                    </li>
-	                                    <li class=""><a href="#graph-1-nav" data-toggle="tab" onclick="graph_1()">Graph after reshaping</a>
+	                                    <li class="">
+	                                    	<a href="#graph-1-nav" data-toggle="tab" onclick="graph_1()">Graph after reshaping</a>
 	                                    </li>
-	                                    <li class=""><a href="#graph-ori-nav" data-toggle="tab" onclick="graph_ori()">The origin graph</a>
+	                                    <li class="">
+	                                    	<a href="#graph-ori-nav" data-toggle="tab" onclick="graph_ori()">The origin graph</a>
 	                                    </li>
 	                                </ul>
 	                                <div class="tab-content">
