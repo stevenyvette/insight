@@ -15,7 +15,6 @@
                 settings = $.extend({},
                 GalMenu.defaults, o),
                 $menu = $('.' + settings.menu);
-                
                 $('body').prepend("<div id='user' class='user' style='display:none;z-index:1000;-webkit-box-sizing: none;box-sizing: none;'>");
 	            var $btip = $(".user");
                 $this.on('click',

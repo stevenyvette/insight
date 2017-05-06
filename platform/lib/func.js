@@ -1,4 +1,5 @@
-var filename=""
+var filename="";
+var id=-1;
 
 function get_filepath(text){
 	show(text);
@@ -15,22 +16,11 @@ function get_filepath_more(){
 }
 
 function set_block_1(){
-	//document.getElementById("tmp").style.display="none";
-	document.getElementById("1-1").style.display="block";
-	document.getElementById("1-2").style.display="block";
-	document.getElementById("1-3").style.display="block";
-	document.getElementById("1-4").style.display="block";
-	document.getElementById("1-5").style.display="block";
-	//document.getElementById("1-6").style.display="block";
-	document.getElementById("page-inner").style.display="block";
+	$('#1-1,#1-2,#1-3,#1-4,#1-5,#page-inner').fadeIn('slow');
 }
 
 function set_block_2 () {
-	document.getElementById("nav-example").style.display="block";
-	document.getElementById("2-1").style.display="block";
-	//document.getElementById("2-2").style.display="block";
-    document.getElementById("graph-1").style.display="block";
-    document.getElementById("graph-ori").style.display="block";
+	$('#nav-example,#graph-1,#graph-ori,#2-1').fadeIn('slow');
 }
 
 function graph(){
@@ -84,7 +74,6 @@ function set_init () {
 	document.getElementById("1-2").style.visibility="visible";
 	document.getElementById("1-3").style.visibility="visible";
 
-
 	document.getElementById("easypiechart-blue").style.visibility="visible";
 	document.getElementById("node-count").innerHTML = count;
 
@@ -104,7 +93,7 @@ function table_start(){
     });
 }
 
-function node_action(id){
+function node_action(){
 	var se=confirm("Make sure to remove this node: \n\t\t"+promatrix[id][1]);
 	if (se==true){
 		node_delete(id);
@@ -135,19 +124,21 @@ function link_action(source,target){
 	}
 }
 
-
+function remove_cancel(){
+	$('#remove-option-1,#remove-option-2').slideUp('slow');
+}
 
 function left_click_delete(){
-	var id = parseInt(click_node.data.id);
-	node_action(id);
-	$('.user').hide();
+	id = parseInt(click_node.data.id);
+	$('#remove-option-1,#remove-option-2').slideDown('slow');
+	$('.user').fadeOut('slow');
 	click_node=undefined;
 }
 
 //右键功能菜单实现函数
 function right_click_delete(){
-	var id = parseInt(trans.data.id);
-	node_action(id);
+	id = parseInt(trans.data.id);
+	$('#remove-option-1,#remove-option-2').slideDown('slow');
 	$(".circle").removeClass("open");
 	$("#overlay").hide();
 	$("#option").hide();
@@ -156,7 +147,7 @@ function right_click_delete(){
 
 function cancel(){
 	$(".circle").removeClass("open");
-	$("#overlay").hide();
+	$("#overlay").fadeOut('slow');
 	$("#option").hide();
 	$(".user").hide();
 	trans=undefined;
@@ -167,7 +158,7 @@ function cancel(){
 function info(){
 	var id = parseInt(trans.data.id);
 	$(".circle").removeClass("open");
-	$("#overlay").hide();
+	$("#overlay").fadeOut('slow');
 	$("#option").hide();
 	layer.open({
 		type: 1,
@@ -192,7 +183,7 @@ function refresh(){
 function tbd(){
 //	alert("To Be Determined");
 	$(".circle").removeClass("open");
-	$("#overlay").hide();
+	$("#overlay").fadeOut('slow');
 	$("#option").hide();
 	layer.open({
 		type: 1,
@@ -212,6 +203,11 @@ function tbd(){
 function help(){
 	window.open("help/help.html");
 	$(".circle").removeClass("open");
-	$("#overlay").hide();
+	$("#overlay").fadeOut('slow');
 	$("#option").hide();
+}
+
+function reset_1(){
+	$('#remove-option-1,#remove-option-2').slideToggle('slow'); 
+	show(filename);
 }
