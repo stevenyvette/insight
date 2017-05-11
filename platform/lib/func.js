@@ -104,7 +104,7 @@ function node_action(){
 					$('.layui-layer-btn0').click(function(){
 						times=$('#times').val();
 						node_delete(id);
-						window.location.hash="#open-graph-confirm";
+						window.location.hash="#network-graph";
 					});
 			  },
 	});
@@ -135,11 +135,17 @@ function link_action(source,target){
 	}
 }
 
+//重置
 function reset(){
 	for (var i=0;i<($('input[type="checkbox"]').length);i++){
 		$('input[type="checkbox"]')[i].checked=false;
 	};
 	$('#times').val('1');
+}
+
+function reset_1(){
+	$('#remove-option-1,#remove-option-2').slideToggle('slow'); 
+	show(filename);
 }
 
 function remove_cancel(){
@@ -228,7 +234,4 @@ function help(){
 	$("#option").hide();
 }
 
-function reset_1(){
-	$('#remove-option-1,#remove-option-2').slideToggle('slow'); 
-	show(filename);
-}
+

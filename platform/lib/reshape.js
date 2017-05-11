@@ -522,16 +522,6 @@ function show_rv_rp(delete_node_id){
                 }
             }
         ],
-        /***dataZoom: [
-            {
-                type: 'slider',
-                show: true,
-                xAxisIndex: [0],
-                start: 0,
-                end: 100
-            },
-            
-        ],***/
         series: [
             {
                 name:'RV',
@@ -540,7 +530,6 @@ function show_rv_rp(delete_node_id){
                 markPoint: {
                     data: [
                         {type: 'max', name: '最大值'},
-                        //{type: 'min', name: '最小值'}
                     ]
                 },
                 markLine: {
@@ -557,7 +546,6 @@ function show_rv_rp(delete_node_id){
                 markPoint: {
                     data: [
                         {type: 'max', name: '最大值'},
-                        //{type: 'min', name: '最小值'}
                     ]
                 },
                 markLine: {
@@ -721,12 +709,15 @@ function node_delete (id) {
 	}else{
 		delete_node_id = id;
 	}
-	promatrix[delete_node_id][5]=0;
+	
+	console.log('成功删除id为 '+delete_node_id+' 的节点！');
+	console.log('迭代次数为: '+times);
+	//promatrix[delete_node_id][5]=0;
+	
     if(delete_node_id<count&&promatrix[delete_node_id][2]!=0){
-    	
-        console.log('成功删除id为 '+delete_node_id+' 的节点！');
-        $('#delete-node-id').value='';
-    		set_block_2();
+    	$('#delete-node-id').value='';
+    	set_block_2();
+    	//初始化各可视化图
 		forced_chart_option_delete=$.extend(true,{},forced_chart_option);
 		circular_option_delete=$.extend(true,{},circular_option);
 	    forced_chart_remove=echarts.init(document.getElementById("graph-remove"));
@@ -736,100 +727,105 @@ function node_delete (id) {
 	    circular_chart_remove = echarts.init(document.getElementById("relationship-remove"));
 	    circular_chart_reshape = echarts.init(document.getElementById("relationship-reshape"));
 	    forced_chart_reshape_ori.setOption(forced_chart_option);
-        
-		set_style();
-		Candidate(delete_node_id,k,count);
-
-        //console.log(circular_option.series[0].data);
-        //circular_chart.setOption(circular_option);
         circular_chart_remove.setOption(circular_option);
         circular_chart.setOption(circular_option_delete);
         forced_chart_remove.setOption(forced_chart_option);
-        
-        for(var i=0;i<count;i++){
-            if(ReplaceProbability(i,delete_node_id,count)>0){
-                //option_candidate.legend.data.push("node "+i);
-                option_candidate.title.text='The best candidate is: \t'+promatrix[predict][1];
-                option_candidate.title.subtext='Node id : '+predict;
-                option_candidate.series[0].data.push({value:ReplaceProbability(i,delete_node_id,count).toFixed(3),name:"node "+i});
-            }
-        }
-
-        if(option_candidate.series[0].data.length==0){
-            option_candidate.series[0].data.push({value:0,name:"No Candidates"});
-            option_candidate.title.subtext='No candidate.';
-        }
-
-        candidate_chart.setOption(option_candidate);
-
-        show_rv_rp(delete_node_id);
-
-        var rp_value1 = rp_value.concat();
-        rp_value1.sort(function(a,b){
-                return b-a;});
-        if(rp_value1[0]>0){
-            var dex=rp_value.indexOf(rp_value1[0]);
-            forced_chart_option_delete.series[0].data[dex].symbol='circle';
-            forced_chart_option_delete.series[0].data[dex].itemStyle={normal:{color:'green'}};
-        }
-        if(rp_value1[1]>0){
-            var dex=rp_value.indexOf(rp_value1[1]);
-            forced_chart_option_delete.series[0].data[dex].symbol='circle';
-            forced_chart_option_delete.series[0].data[dex].itemStyle={normal:{color:'blue'}};
-        }
-        if(rp_value1[2]>0){
-            var dex=rp_value.indexOf(rp_value1[2]);
-            forced_chart_option_delete.series[0].data[dex].symbol='circle';
-            forced_chart_option_delete.series[0].data[dex].itemStyle={normal:{color:'yellow'}};
-        }
-        forced_chart.setOption(forced_chart_option_delete);
-        
-        //根据predict开始reshape
-        if(predict!=-1){
-            for(var i=0;i<count;i++){
-                if(adjmatrix[delete_node_id][i]==1&&adjmatrix[predict][i]!=1){
-                    adjmatrix[delete_node_id][i]=0;
-                    adjmatrix[i][delete_node_id]=0;
-                    adjmatrix[i][predict]=1;
-                    adjmatrix[predict][i]=1;
-                    promatrix[i][4]=degree(i,-1);
-                    forced_chart_option.series[0].links.push({source:i,target:predict});
-                    circular_option.series[0].links.push({source:i,target:predict});
-                }
-            }
-            promatrix[predict][4]=degree(predict,-1);
-            forced_chart_option.series[0].data[predict].symbol='circle';
-            forced_chart_option.series[0].data[predict].itemStyle={normal:{color:'green'}};
-            circular_option.series[0].data[predict].itemStyle={normal:{color:'green'}};
-
-
-            circular_chart_reshape.setOption(circular_option);
-            forced_chart_reshape.setOption(forced_chart_option);
-            forced_chart_reshape_1.setOption(forced_chart_option);
-
-        }
-
-        promatrix[delete_node_id][2]=0;
-        promatrix[delete_node_id][3]=0;
-        promatrix[delete_node_id][4]=0;
-        update_table();
-        show_result();
-        window.addEventListener("resize", function () {
-            circular_chart.resize(); 
-            pocc_chart.resize();
-            rv_rp_line_chart.resize();
-            candidate_chart.resize();
-        });
+		
+		set_style();
+		
+		//只进行一次迭代，显示最有可能的 3 个替换节点并且给出替换概率
+		if(times==1){ 				
+			Candidate(delete_node_id,k,count);
+			Candidate_piechart(delete_node_id,k,count);
+			for(var i=0;i<count;i++){
+	            if(ReplaceProbability(i,delete_node_id,count)>0){
+	                option_candidate.title.text='The best candidate is: \t'+promatrix[predict][1];
+	                option_candidate.title.subtext='Node id : '+predict;
+	                option_candidate.series[0].data.push({value:ReplaceProbability(i,delete_node_id,count).toFixed(3),name:"node "+i});
+	            }
+	        }
+	
+	        if(option_candidate.series[0].data.length==0){
+	            option_candidate.series[0].data.push({value:0,name:"No Candidates"});
+	            option_candidate.title.subtext='No candidate.';
+	        }
+	        
+	        candidate_chart.setOption(option_candidate);
+	        show_rv_rp(delete_node_id);
+	        
+	        var rp_value1 = rp_value.concat();
+	        rp_value1.sort(function(a,b){
+	                return b-a;});
+	        if(rp_value1[0]>0){
+	            var dex=rp_value.indexOf(rp_value1[0]);
+	            forced_chart_option_delete.series[0].data[dex].symbol='circle';
+	            forced_chart_option_delete.series[0].data[dex].itemStyle={normal:{color:'green'}};
+	        }
+	        if(rp_value1[1]>0){
+	            var dex=rp_value.indexOf(rp_value1[1]);
+	            forced_chart_option_delete.series[0].data[dex].symbol='circle';
+	            forced_chart_option_delete.series[0].data[dex].itemStyle={normal:{color:'blue'}};
+	        }
+	        if(rp_value1[2]>0){
+	            var dex=rp_value.indexOf(rp_value1[2]);
+	            forced_chart_option_delete.series[0].data[dex].symbol='circle';
+	            forced_chart_option_delete.series[0].data[dex].itemStyle={normal:{color:'yellow'}};
+	        }
+	        forced_chart.setOption(forced_chart_option_delete);
+	        
+	        //根据predict开始reshape
+	        if(predict!=-1){
+	            for(var i=0;i<count;i++){
+	                if(adjmatrix[delete_node_id][i]==1&&adjmatrix[predict][i]!=1){
+	                    adjmatrix[delete_node_id][i]=0;
+	                    adjmatrix[i][delete_node_id]=0;
+	                    adjmatrix[i][predict]=1;
+	                    adjmatrix[predict][i]=1;
+	                    promatrix[i][4]=degree(i,-1);
+	                    forced_chart_option.series[0].links.push({source:i,target:predict});
+	                    circular_option.series[0].links.push({source:i,target:predict});
+	                }
+	            }
+	            promatrix[predict][4]=degree(predict,-1);
+	            forced_chart_option.series[0].data[predict].symbol='circle';
+	            forced_chart_option.series[0].data[predict].itemStyle={normal:{color:'green'}};
+	            circular_option.series[0].data[predict].itemStyle={normal:{color:'green'}};
+	
+	            circular_chart_reshape.setOption(circular_option);
+	            forced_chart_reshape.setOption(forced_chart_option);
+	            forced_chart_reshape_1.setOption(forced_chart_option);
+	        }
+	
+	        promatrix[delete_node_id][2]=0;
+	        promatrix[delete_node_id][3]=0;
+	        promatrix[delete_node_id][4]=0;
+	        update_table();
+	        show_result();
+	        window.addEventListener("resize", function () {
+	            circular_chart.resize(); 
+	            pocc_chart.resize();
+	            rv_rp_line_chart.resize();
+	            candidate_chart.resize();
+	        });
+		}
+		else{
+			tmp_delete=delete_node_id;
+			tmp_count=count;
+			while(times!=0){
+				Candidate(tmp_delete,k,tmp_count);
+				
+				
+				tmp_delete=
+				tmp_count--;
+				times--;
+			}
+		}
     }
     else{
         alert("节点不存在!");
     }
-    //document.getElementById("graph-remove").style.display="none";
-    document.getElementById("graph-reshape").style.display="none";
-    document.getElementById("relationship-remove").style.display="none";
-    document.getElementById("relationship-reshape").style.display="none";
-    document.getElementById("graph-1").style.display="none";
-    document.getElementById("graph-ori").style.display="none";
+    
+    $("#graph-reshape,#relationship-remove,#relationship-reshape,#graph-1,#graph-ori").hide();
 
     window.addEventListener("resize", function () {
             forced_chart_remove.resize(); 
@@ -837,6 +833,34 @@ function node_delete (id) {
             circular_chart_remove.resize(); 
             circular_chart_reshape.resize();
         });
+}
+
+//设置移除后，各图形显示样式
+function set_style(){
+    for(var i=0;i<circular_option.series[0].data.length;i++){
+        if(circular_option.series[0].data[i]["id"]==delete_node_id){
+            circular_option.series[0].data[i].itemStyle={normal:{color:"red"}};
+        }
+    }
+    for(var i=0;i<forced_chart_option.series[0].data.length;i++){
+        if(forced_chart_option.series[0].data[i]["id"]==delete_node_id){
+            forced_chart_option.series[0].data[i].itemStyle={normal:{color:"red",opacity:'0.2'},emphasis:{symbol:'image://images/avtar.png'}};
+            forced_chart_option.series[0].data[i].symbol='circle';
+            forced_chart_option_delete.series[0].data[i].symbol='circle';
+            forced_chart_option_delete.series[0].data[i].itemStyle={normal:{color:"red",opacity:'0.4'}};
+        }
+    }
+    for (var i = 0; i<circular_option.series[0].links.length;i++){
+        if((circular_option.series[0].links[i]["source"]==delete_node_id || circular_option.series[0].links[i]["target"]==delete_node_id)){
+            circular_option.series[0].links[i]='';
+        }
+    }
+    for (var i = 0; i<forced_chart_option.series[0].links.length;i++){
+        if((forced_chart_option.series[0].links[i]["source"]==delete_node_id || forced_chart_option.series[0].links[i]["target"]==delete_node_id)){
+            forced_chart_option_delete.series[0].links[i].lineStyle.normal.type='dashed';
+            forced_chart_option.series[0].links[i]='';
+        }
+    }
 }
 
 function link_add(){
@@ -944,32 +968,4 @@ function reshape_matrix(r,graph){
             re_promatrix[node.id][0] = r;
     });
 	re_efficiency(r);
-}
-
-//设置移除后，各图形显示样式
-function set_style(){
-    for(var i=0;i<circular_option.series[0].data.length;i++){
-        if(circular_option.series[0].data[i]["id"]==delete_node_id){
-            circular_option.series[0].data[i].itemStyle={normal:{color:"red"}};
-        }
-    }
-    for(var i=0;i<forced_chart_option.series[0].data.length;i++){
-        if(forced_chart_option.series[0].data[i]["id"]==delete_node_id){
-            forced_chart_option.series[0].data[i].itemStyle={normal:{color:"red",opacity:'0.2'},emphasis:{symbol:'image://images/avtar.png'}};
-            forced_chart_option.series[0].data[i].symbol='circle';
-            forced_chart_option_delete.series[0].data[i].symbol='circle';
-            forced_chart_option_delete.series[0].data[i].itemStyle={normal:{color:"red",opacity:'0.4'}};
-        }
-    }
-    for (var i = 0; i<circular_option.series[0].links.length;i++){
-        if((circular_option.series[0].links[i]["source"]==delete_node_id || circular_option.series[0].links[i]["target"]==delete_node_id)){
-            circular_option.series[0].links[i]='';
-        }
-    }
-    for (var i = 0; i<forced_chart_option.series[0].links.length;i++){
-        if((forced_chart_option.series[0].links[i]["source"]==delete_node_id || forced_chart_option.series[0].links[i]["target"]==delete_node_id)){
-            forced_chart_option_delete.series[0].links[i].lineStyle.normal.type='dashed';
-            forced_chart_option.series[0].links[i]='';
-        }
-    }
 }
