@@ -102,7 +102,7 @@ function node_action(){
 			  success: function(){
 				$('.layui-layer-btn0').click(function(){
 					node_delete(id);
-					window.location.hash="#open-graph-confirm";
+					//window.location.hash="#open-graph-confirm";
 					var rp_value2 = rp_value.concat();
 				    rp_value2.sort(function(a,b){
 				            return b-a;});
