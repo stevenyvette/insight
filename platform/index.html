@@ -189,37 +189,35 @@
 				    		    </div>
 				    		    <div class="col-lg-7" id="remove-option-1" style="display: none;">
 				    		    		<div class="alert alert-info" >
-					    		    		<form role="form">
-					    		    			<div class="form-group" style="width:50%;float:left">
-	                                        <label>需要满足的属性:</label>
-	                                        <div class="checkbox">
-	                                            <label>
-	                                                <input name="checkbox-1" id='role' type="checkbox" value="角色">角色
-	                                            </label>
-	                                        </div>
-	                                        <div class="checkbox">
-	                                            <label>
-	                                                <input name="checkbox-1" id="friend-numbers" type="checkbox" value="朋友数">朋友数
-	                                            </label>
-	                                        </div>
-	                                        <div class="checkbox">
-	                                            <label>
-	                                                <input name="checkbox-1" id="importance" type="checkbox" value="总要度">重要度
-	                                            </label>
-	                                        </div>
-					    		    			</div>
-					    		    			<div class="form-group" style="width:50%;float:left">
-					    		    				<label>迭代替换的次数:</label>
-					    		    				<select id="times" class="form-control">
-					                            <option value="1">1</option>
-					                            <option value="2">2</option>
-					                            <option value="3">3</option>
-					    		    				</select>
-					                    </div>
-					                    <button onclick="node_action()" class="btn btn-success" style="float: right;" href="#network-graph">确认删除</button>
-		                                <button type="reset" class="btn btn-danger" >重置</button>
-		                                <button onclick="remove_cancel()" class="btn btn-warning" style="float: right;" href="#network-graph">取消</button>
-					    		    		</form>
+				    		    			<div class="form-group" style="width:50%;float:left">
+                                        <label>需要满足的属性:</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input name="checkbox-1" id='role' type="checkbox" value="角色">角色
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input name="checkbox-1" id="friend-numbers" type="checkbox" value="朋友数">朋友数
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input name="checkbox-1" id="importance" type="checkbox" value="总要度">重要度
+                                            </label>
+                                        </div>
+				    		    			</div>
+				    		    			<div class="form-group" style="width:50%;float:left">
+				    		    				<label>迭代替换的次数:</label>
+				    		    				<select id="times" class="form-control">
+				                            <option value="1">1</option>
+				                            <option value="2">2</option>
+				                            <option value="3">3</option>
+				    		    				</select>
+				                    </div>
+				                    <button onclick="node_action()" class="btn btn-success" style="float: right;">确认删除</button>
+	                                <button onclick="reset()" class="btn btn-danger" >重置</button>
+	                                <button onclick="remove_cancel()" class="btn btn-warning" style="float: right;">取消</button>
 					    		    	</div>
 				    		    	</div>
 				    		    <div class="col-lg-4" id='remove-option-2' style='display: none;'>

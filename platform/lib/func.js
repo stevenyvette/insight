@@ -100,27 +100,27 @@ function node_action(){
 			  moveType: 1, //拖拽模式，0或者1
 			  content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;text-align:center">是否确认删除节点：<br><br><big style="color:#F09B22;">' + promatrix[id][1] + '</big></div>',
 			  success: function(){
-				$('.layui-layer-btn0').click(function(){
-					node_delete(id);
-					//window.location.hash="#open-graph-confirm";
-					var rp_value2 = rp_value.concat();
-				    rp_value2.sort(function(a,b){
-				            return b-a;});
-					for (var i=0;i<3;i++){
-				        if(rp_value2[i]>0){
-				            var dex=rp_value.indexOf(rp_value2[i]);
-				            titlesN3[3-i] = titlesN3[3-i]+': '+ promatrix[dex][1];
-				            contentsN3[3-i] = 'PR: '+rp_value2[i].toFixed(8)+''; 
-				        }
-				    }
-					setTimeout("show_jbox()",1500);
-					setTimeout("show_jbox()",2000);
-					setTimeout("show_jbox()",2500);
-					setTimeout("show_jbox()",3000);
-					console.log(contentsN3);
-					});
+					$('.layui-layer-btn0').click(function(){
+						node_delete(id);
+						window.location.hash="#open-graph-confirm";
+						var rp_value2 = rp_value.concat();
+					    rp_value2.sort(function(a,b){
+					            return b-a;});
+						for (var i=0;i<3;i++){
+					        if(rp_value2[i]>0){
+					            var dex=rp_value.indexOf(rp_value2[i]);
+					            titlesN3[3-i] = titlesN3[3-i]+': '+ promatrix[dex][1];
+					            contentsN3[3-i] = 'PR: '+rp_value2[i].toFixed(8)+''; 
+					        }
+					    }
+						setTimeout("show_jbox()",1500);
+						setTimeout("show_jbox()",2000);
+						setTimeout("show_jbox()",2500);
+						setTimeout("show_jbox()",3000);
+						console.log(contentsN3);
+						});
 				  },
-				});
+	});
 };
 
 function link_action(source,target){
@@ -130,7 +130,18 @@ function link_action(source,target){
 	}
 }
 
+function reset(){
+	for (var i=0;i<($('input[type="checkbox"]').length);i++){
+		$('input[type="checkbox"]')[i].checked=false;
+	};
+	$('#times').val('1');
+}
+
 function remove_cancel(){
+	for (var i=0;i<($('input[type="checkbox"]').length);i++){
+		$('input[type="checkbox"]')[i].checked=false;
+	};
+	$('#times').val('1');
 	$('#remove-option-1,#remove-option-2').slideUp('slow');
 }
 
