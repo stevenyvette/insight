@@ -87,19 +87,13 @@ function table_start(){
 }
 
 function node_action(){
-//	for (var i=0;i<($('input[type="checkbox"]').length);i++){
-//		console.log($('input[type="checkbox"]')[i].checked);
-//		console.log($('input[type="checkbox"]')[i].id)
-//	};
-	console.log($('#times option:selected').val());
-
 	layer.open({
 			  type: 1,
 			  title: false,
 			  closeBtn: false,
 			  area: '300px;',
 			  shade: 0.8,
-			  id: 'LAY_layuipro2', //设定一个id，防止重复弹出
+			  id: 'LAY_layuipro3', //设定一个id，防止重复弹出
 			  resize: false,
 			  btn: ['确认', '取消'],
 			  btnAlign: 'c',
