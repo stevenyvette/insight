@@ -196,7 +196,7 @@ function tbd(){
 		closeBtn: false,
 		area: '300px;',
 		shade: 0.8,
-		id: 'LAY_layuipro2', //设定一个id，防止重复弹出
+		id: 'LAY_layuipro1', //设定一个id，防止重复弹出
 		resize: false,
 		btn: ['我知道了'],
 		btnAlign: 'c',
