@@ -23,14 +23,18 @@ var rp_value = new Array();
 var top_three = {'top':-1,'second':-1,'third':-1};
 
 function show(file){
-	
-    document.getElementById("graph-1").style.display="none";
-    document.getElementById("graph-ori").style.display="none";
+    $("#graph-1,#graph-ori").hide();
     set_block_1();
-    var filepath='graph/'+file;
-    document.getElementById("show-file-name").innerHTML="Network ID: "+" "+file;
+    filepath='graph/'+file;
+   $("#show-file-name").html("Network ID: "+" "+file);
 
-    //forced_chart
+	show_forced(file);
+    show_circular(file);
+    show_degree_bc();
+}
+
+//主图 forced-chart
+function show_forced(file){
     forced_chart = echarts.init(document.getElementById("graph"),'dark');
     forced_chart.showLoading();
     $.get(filepath, function (xml) {
@@ -198,8 +202,10 @@ function show(file){
             }
         })
     }, 'xml');
+}
 
-    //环形图
+//环形图
+function show_circular(file){
     count=0;
     circular_chart = echarts.init(document.getElementById("echart-forced"));
     circular_chart.showLoading();
@@ -350,15 +356,13 @@ function show(file){
         });
         //window.onresize = circular_chart.resize;
     }, 'xml');
-	
-	//度分布图
+}
+
+//degree-bc分布图
+function show_degree_bc(){
     degree_bc = echarts.init(document.getElementById("degree-bc"));
     degree_bc.showLoading();
     degree_bc_option = {
-        /*title : {
-            text: 'Degree Distribution Chart',
-            subtext: '',
-        },*/
         grid: {
             left: '3%',
             right: '7%',
@@ -464,9 +468,9 @@ function show(file){
 
     degree_bc.hideLoading();
     degree_bc.setOption(degree_bc_option);
-
 }
 
+//rv-rp分布图
 function show_rv_rp(delete_node_id){
     rv_rp_line_chart = echarts.init(document.getElementById("rv-rp-line-chart"));
     rv_rp_line_chart.showLoading();
@@ -585,9 +589,6 @@ function show_rv_rp(delete_node_id){
 
     var dex=-1;
     for(var i=0;i<count;i++){
-        /***option_rv_rp.xAxis[0].data.push(i);
-        option_rv_rp.series[0].data.push(ReplacementValue(i,delete_node_id,count).toFixed(2));
-        option_rv_rp.series[1].data.push(ReplaceProbability(i,delete_node_id,count).toFixed(2));***/
         if(rp_value3[i]>0){
             if(i>0&&rp_value3[i]==rp_value3[i-1]){
                 dex=rp_value.indexOf(rp_value3[i],dex+1);
@@ -619,8 +620,6 @@ function init_matrix(graph){
             count+=1;
         });
     tmp = count;
-    //console.log(count);
-    //初始化数组
 
     for (var i=0;i<count;i++){
         adjmatrix[i] = new Array();
@@ -674,9 +673,6 @@ function ori_matrix(graph){
                 link_number++;
         }
     }   
-
-    //console.log(adjmatrix);
-    //console.log(promatrix);
 
     POCC(count);
 }
@@ -842,7 +838,6 @@ function node_delete (id) {
 
         }
 
-
         promatrix[delete_node_id][2]=0;
         promatrix[delete_node_id][3]=0;
         promatrix[delete_node_id][4]=0;
@@ -942,14 +937,10 @@ function link_delete(source,target){
 
 //更新promatrix table
 function update_table(){
-
-    //var content="";
     var table_content=new Array();
     for(var i=0;i<count;i++){
-        //content+="<tr><td>"+promatrix[i][0]+"</td><td>"+promatrix[i][1]+"</td><td>"+promatrix[i][2]+"</td><td>"+promatrix[i][3]+"</td><td>"+promatrix[i][4]+"</td></tr>";
         table_content.push([promatrix[i][0],promatrix[i][1],promatrix[i][2],promatrix[i][3],promatrix[i][4]]);
     }
-    //document.getElementById("promatrix-table").innerHTML=content;
     $(document).ready(function () {
         $('#dataTables-example').dataTable({
             bDestroy:true,

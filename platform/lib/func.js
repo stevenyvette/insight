@@ -1,18 +1,19 @@
 var filename="";
 var id=-1;
+var filepath="";
 
 function get_filepath(text){
-	show(text);
-	filename=text
-	document.getElementById("introduction").style.display="none";
-	document.getElementById("network-id").style.display="block";
+	$("#introduction").slideUp('slow');
+	$("#network-id").fadeIn('slow');
+	setTimeout('show("'+text+'")',200);
+	filename=text;
 }
 
 function get_filepath_more(){
 	filename = document.getElementById("filename").files[0].name;
 	show(filename);
-	document.getElementById("introduction").style.display="none";
-	document.getElementById("network-id").style.display="block";
+	$("#introduction").hide();
+	$("#network-id").show();
 }
 
 function set_block_1(){
@@ -24,49 +25,41 @@ function set_block_2 () {
 }
 
 function graph(){
-	document.getElementById("graph").style.display="block";
-    document.getElementById("graph-1").style.display="none";
-    document.getElementById("graph-ori").style.display="none";    
+	$("#graph").show();
+    $("#graph-1").hide();
+    $("#graph-ori").hide();    
 }
 
 function graph_1(){
-	document.getElementById("graph").style.display="none";
-    document.getElementById("graph-1").style.display="block";
-    document.getElementById("graph-ori").style.display="none";
+	$("#graph").hide();
+    $("#graph-1").show();
+    $("#graph-ori").hide();
 }
 
 function graph_ori(){
-	document.getElementById("graph").style.display="none";
-    document.getElementById("graph-1").style.display="none";
-    document.getElementById("graph-ori").style.display="block"; 
+	$("#graph").hide();
+    $("#graph-1").hide();
+    $("#graph-ori").show();
 }
 
 function graph_remove () {
-	document.getElementById("graph-remove").style.display="block";
-    document.getElementById("graph-reshape").style.display="none";
-    document.getElementById("relationship-remove").style.display="none";
-    document.getElementById("relationship-reshape").style.display="none";
+	$("#graph-remove").show();
+    $("#graph-reshape,#relationship-remove,#relationship-reshape").hide();
 }
 
 function graph_reshape () {
-	document.getElementById("graph-remove").style.display="none";
-    document.getElementById("graph-reshape").style.display="block";
-    document.getElementById("relationship-remove").style.display="none";
-    document.getElementById("relationship-reshape").style.display="none";
+	$("#graph-reshape").show();
+    $("#graph-remove,#relationship-remove,#relationship-reshape").hide();
 }
 
 function relationship_remove () {
-	document.getElementById("graph-remove").style.display="none";
-    document.getElementById("graph-reshape").style.display="none";
-    document.getElementById("relationship-remove").style.display="block";
-    document.getElementById("relationship-reshape").style.display="none";
+	$("#relationship-remove").show();
+    $("#graph-reshape,#graph-remove,#relationship-reshape").hide();
 }
 
 function relationship_reshape () {
-	document.getElementById("graph-remove").style.display="none";
-    document.getElementById("graph-reshape").style.display="none";
-    document.getElementById("relationship-remove").style.display="none";
-    document.getElementById("relationship-reshape").style.display="block";
+	$("#relationship-reshape").show();
+    $("#graph-reshape,#graph-remove,#relationship-remove").hide();
 }
 
 function set_init () {
@@ -94,27 +87,46 @@ function table_start(){
 }
 
 function node_action(){
-	var se=confirm("Make sure to remove this node: \n\t\t"+promatrix[id][1]);
-	if (se==true){
-		node_delete(id);
-		window.location.hash="#open-graph-confirm";
-		var rp_value2 = rp_value.concat();
-	    rp_value2.sort(function(a,b){
-	            return b-a;});
-		for (var i=0;i<3;i++){
-	        if(rp_value2[i]>0){
-	            var dex=rp_value.indexOf(rp_value2[i]);
-	            titlesN3[3-i] = titlesN3[3-i]+': '+ promatrix[dex][1];
-	            contentsN3[3-i] = 'PR: '+rp_value2[i].toFixed(8)+''; 
-	        }
+//	for (var i=0;i<($('input[type="checkbox"]').length);i++){
+//		console.log($('input[type="checkbox"]')[i].checked);
+//		console.log($('input[type="checkbox"]')[i].id)
+//	};
+	console.log($('#times option:selected').val());
 
-	   }
-		setTimeout("show_jbox()",1500);
-		setTimeout("show_jbox()",2000);
-		setTimeout("show_jbox()",2500);
-		setTimeout("show_jbox()",3000);
-		console.log(contentsN3);
-	}
+	layer.open({
+			  type: 1,
+			  title: false,
+			  closeBtn: false,
+			  area: '300px;',
+			  shade: 0.8,
+			  id: 'LAY_layuipro2', //设定一个id，防止重复弹出
+			  resize: false,
+			  btn: ['确认', '取消'],
+			  btnAlign: 'c',
+			  moveType: 1, //拖拽模式，0或者1
+			  content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;text-align:center">是否确认删除节点：<br><br><big style="color:#F09B22;">' + promatrix[id][1] + '</big></div>',
+			  success: function(){
+				$('.layui-layer-btn0').click(function(){
+					node_delete(id);
+					window.location.hash="#open-graph-confirm";
+					var rp_value2 = rp_value.concat();
+				    rp_value2.sort(function(a,b){
+				            return b-a;});
+					for (var i=0;i<3;i++){
+				        if(rp_value2[i]>0){
+				            var dex=rp_value.indexOf(rp_value2[i]);
+				            titlesN3[3-i] = titlesN3[3-i]+': '+ promatrix[dex][1];
+				            contentsN3[3-i] = 'PR: '+rp_value2[i].toFixed(8)+''; 
+				        }
+				    }
+					setTimeout("show_jbox()",1500);
+					setTimeout("show_jbox()",2000);
+					setTimeout("show_jbox()",2500);
+					setTimeout("show_jbox()",3000);
+					console.log(contentsN3);
+					});
+				  },
+				});
 };
 
 function link_action(source,target){
@@ -181,7 +193,6 @@ function refresh(){
 }
 
 function tbd(){
-//	alert("To Be Determined");
 	$(".circle").removeClass("open");
 	$("#overlay").fadeOut('slow');
 	$("#option").hide();
