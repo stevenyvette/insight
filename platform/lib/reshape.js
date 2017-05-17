@@ -7,7 +7,7 @@ candidate = new Array();
 var R;
 var echart_forced;
 var echart_bar_pocc;
-var option;
+var circular_option;
 var eff = 0;
 var re_eff = 0;
 var tmp = 0;
@@ -240,7 +240,7 @@ function show_circular(file){
                 }
             };
         });
-        option = {
+        circular_option = {
             title: {
                 text: file,
                 subtext: 'nodes: each node represent a person'+'\n'
@@ -349,7 +349,7 @@ function show_circular(file){
             },
         };
 
-        circular_chart.setOption(option);
+        circular_chart.setOption(circular_option);
         window.addEventListener("resize", function () {
             circular_chart.resize(); 
             pocc_chart.resize(); 
@@ -700,14 +700,14 @@ function node_add(){
 
     //添加category信息
     categories.push({name:'节点'+add_node_id});
-    option.legend[0].data.push("Group"+add_node_id);
+    circular_option.legend[0].data.push("Group"+add_node_id);
 
     //添加节点信息
-    option.series[0].data.push({id: add_node_id, name: add_node_name,label:{normal:{show: true}}, weight: add_node_weight, symbolSize: 5*add_node_weight, draggable:false, value: add_node_weight, category: add_node_group});
+    circular_option.series[0].data.push({id: add_node_id, name: add_node_name,label:{normal:{show: true}}, weight: add_node_weight, symbolSize: 5*add_node_weight, draggable:false, value: add_node_weight, category: add_node_group});
 
     //y = document.getElementById('add-node-id');
     console.log('成功添加id为 '+add_node_id+' 的节点！');
-    circular_chart.setOption(option);
+    circular_chart.setOption(circular_option);
     console.log(adjmatrix);
     console.log(promatrix);
     document.getElementById('add-node-name').value='';
@@ -717,16 +717,18 @@ function node_add(){
 
 function node_delete (id) {
 	if(id==null){
-		var delete_node_id = get_id(document.getElementById('delete-node-id').value);
+		delete_node_id = get_id(document.getElementById('delete-node-id').value);
 	}else{
-		var delete_node_id = id;
+		delete_node_id = id;
 	}
 	promatrix[delete_node_id][5]=0;
-    //categories[delete_node_id] = '';
     if(delete_node_id<count&&promatrix[delete_node_id][2]!=0){
-    	set_block_2();
+    	
+        console.log('成功删除id为 '+delete_node_id+' 的节点！');
+        $('#delete-node-id').value='';
+    		set_block_2();
 		forced_chart_option_delete=$.extend(true,{},forced_chart_option);
-		circular_option_delete=$.extend(true,{},option);
+		circular_option_delete=$.extend(true,{},circular_option);
 	    forced_chart_remove=echarts.init(document.getElementById("graph-remove"));
 	    forced_chart_reshape_1=echarts.init(document.getElementById("graph-1"),'dark');
 	    forced_chart_reshape_ori=echarts.init(document.getElementById("graph-ori"),'dark');
@@ -734,49 +736,17 @@ function node_delete (id) {
 	    circular_chart_remove = echarts.init(document.getElementById("relationship-remove"));
 	    circular_chart_reshape = echarts.init(document.getElementById("relationship-reshape"));
 	    forced_chart_reshape_ori.setOption(forced_chart_option);
-        Candidate(delete_node_id,k,count);
+        
+		set_style();
+		Candidate(delete_node_id,k,count);
 
-        for(var i=0;i<option.series[0].data.length;i++){
-            if(option.series[0].data[i]["id"]==delete_node_id){
-                option.series[0].data[i].itemStyle={normal:{color:"red"}};
-                //option.series[0].data.splice(i,1);
-            }
-        }
-        for(var i=0;i<forced_chart_option.series[0].data.length;i++){
-            if(forced_chart_option.series[0].data[i]["id"]==delete_node_id){
-                //console.log(forced_chart_option.series[0].data[i]);
-                forced_chart_option.series[0].data[i].itemStyle={normal:{color:"red",opacity:'0.2'},emphasis:{symbol:'image://images/avtar.png'}};
-                forced_chart_option.series[0].data[i].symbol='circle';
-                forced_chart_option_delete.series[0].data[i].symbol='circle';
-//              console.log(forced_chart_option_delete.series[0].data[i]);
-                forced_chart_option_delete.series[0].data[i].itemStyle={normal:{color:"red",opacity:'0.4'}};
-            }
-        }
-        for (var i = 0; i<option.series[0].links.length;i++){
-            if((option.series[0].links[i]["source"]==delete_node_id || option.series[0].links[i]["target"]==delete_node_id)){
-                option.series[0].links[i]='';
-            }
-        }
-        for (var i = 0; i<forced_chart_option.series[0].links.length;i++){
-            if((forced_chart_option.series[0].links[i]["source"]==delete_node_id || forced_chart_option.series[0].links[i]["target"]==delete_node_id)){
-                forced_chart_option_delete.series[0].links[i].lineStyle.normal.type='dashed';
-                forced_chart_option.series[0].links[i]='';
-//              console.log(forced_chart_option_delete.series[0].links[i]);
-            }
-        }
-
-
-        document.getElementById('delete-node-id').value='';
-        console.log('成功删除id为 '+delete_node_id+' 的节点！');
-        //console.log(option.series[0].data);
-        //circular_chart.setOption(option);
-        circular_chart_remove.setOption(option);
+        //console.log(circular_option.series[0].data);
+        //circular_chart.setOption(circular_option);
+        circular_chart_remove.setOption(circular_option);
         circular_chart.setOption(circular_option_delete);
         forced_chart_remove.setOption(forced_chart_option);
         
         for(var i=0;i<count;i++){
-            //console.log("ReplacementValue of "+i+" is: "+ReplacementValue(i,delete_node_id,count));
-            //console.log("ReplaceProbability of "+i+" is: "+ReplaceProbability(i,delete_node_id,count));
             if(ReplaceProbability(i,delete_node_id,count)>0){
                 //option_candidate.legend.data.push("node "+i);
                 option_candidate.title.text='The best candidate is: \t'+promatrix[predict][1];
@@ -813,6 +783,7 @@ function node_delete (id) {
             forced_chart_option_delete.series[0].data[dex].itemStyle={normal:{color:'yellow'}};
         }
         forced_chart.setOption(forced_chart_option_delete);
+        
         //根据predict开始reshape
         if(predict!=-1){
             for(var i=0;i<count;i++){
@@ -823,16 +794,16 @@ function node_delete (id) {
                     adjmatrix[predict][i]=1;
                     promatrix[i][4]=degree(i,-1);
                     forced_chart_option.series[0].links.push({source:i,target:predict});
-                    option.series[0].links.push({source:i,target:predict});
+                    circular_option.series[0].links.push({source:i,target:predict});
                 }
             }
             promatrix[predict][4]=degree(predict,-1);
             forced_chart_option.series[0].data[predict].symbol='circle';
             forced_chart_option.series[0].data[predict].itemStyle={normal:{color:'green'}};
-            option.series[0].data[predict].itemStyle={normal:{color:'green'}};
+            circular_option.series[0].data[predict].itemStyle={normal:{color:'green'}};
 
 
-            circular_chart_reshape.setOption(option);
+            circular_chart_reshape.setOption(circular_option);
             forced_chart_reshape.setOption(forced_chart_option);
             forced_chart_reshape_1.setOption(forced_chart_option);
 
@@ -842,6 +813,7 @@ function node_delete (id) {
         promatrix[delete_node_id][3]=0;
         promatrix[delete_node_id][4]=0;
         update_table();
+        show_result();
         window.addEventListener("resize", function () {
             circular_chart.resize(); 
             pocc_chart.resize();
@@ -880,7 +852,7 @@ function link_add(){
 
         //添加连边信息
         forced_chart_option.series[0].links.push({source:add_link_source,target:add_link_target});
-        option.series[0].links.push({source:add_link_source,target:add_link_target});
+        circular_option.series[0].links.push({source:add_link_source,target:add_link_target});
 
         //更新 adjmatrix & promatrix
         adjmatrix[add_link_target][add_link_source]=1;
@@ -888,7 +860,7 @@ function link_add(){
         promatrix[add_link_target][4]=degree(add_link_target,-1);
         promatrix[add_link_source][4]=degree(add_link_source,-1);
         console.log('成功添加连边： '+add_link_source+'   to   '+add_link_target);
-        circular_chart.setOption(option);
+        circular_chart.setOption(circular_option);
         forced_chart.setOption(forced_chart_option);
     }
     else if(add_link_source>=count||add_link_target>=count){
@@ -918,14 +890,14 @@ function link_delete(source,target){
         promatrix[delete_link_target][4]=degree(delete_link_target,-1);
         console.log('成功删除连边： '+delete_link_source+'   to   '+delete_link_target);
         update_table();
-        for (var i = 0; i<option.series[0].links.length;i++){
-            if((option.series[0].links[i]["source"]==delete_link_source && option.series[0].links[i]["target"]==delete_link_target)||(option.series[0].links[i]["source"]==delete_link_target&& option.series[0].links[i]["target"]==delete_link_source)){
-                option.series[0].links[i]='';
+        for (var i = 0; i<circular_option.series[0].links.length;i++){
+            if((circular_option.series[0].links[i]["source"]==delete_link_source && circular_option.series[0].links[i]["target"]==delete_link_target)||(circular_option.series[0].links[i]["source"]==delete_link_target&& circular_option.series[0].links[i]["target"]==delete_link_source)){
+                circular_option.series[0].links[i]='';
                 forced_chart_option.series[0].links[i]='';
             }
         }
         forced_chart.setOption(forced_chart_option);
-        circular_chart.setOption(option);
+        circular_chart.setOption(circular_option);
     }
     else{
         alert("连边不存在!");
@@ -972,4 +944,32 @@ function reshape_matrix(r,graph){
             re_promatrix[node.id][0] = r;
     });
 	re_efficiency(r);
+}
+
+//设置移除后，各图形显示样式
+function set_style(){
+    for(var i=0;i<circular_option.series[0].data.length;i++){
+        if(circular_option.series[0].data[i]["id"]==delete_node_id){
+            circular_option.series[0].data[i].itemStyle={normal:{color:"red"}};
+        }
+    }
+    for(var i=0;i<forced_chart_option.series[0].data.length;i++){
+        if(forced_chart_option.series[0].data[i]["id"]==delete_node_id){
+            forced_chart_option.series[0].data[i].itemStyle={normal:{color:"red",opacity:'0.2'},emphasis:{symbol:'image://images/avtar.png'}};
+            forced_chart_option.series[0].data[i].symbol='circle';
+            forced_chart_option_delete.series[0].data[i].symbol='circle';
+            forced_chart_option_delete.series[0].data[i].itemStyle={normal:{color:"red",opacity:'0.4'}};
+        }
+    }
+    for (var i = 0; i<circular_option.series[0].links.length;i++){
+        if((circular_option.series[0].links[i]["source"]==delete_node_id || circular_option.series[0].links[i]["target"]==delete_node_id)){
+            circular_option.series[0].links[i]='';
+        }
+    }
+    for (var i = 0; i<forced_chart_option.series[0].links.length;i++){
+        if((forced_chart_option.series[0].links[i]["source"]==delete_node_id || forced_chart_option.series[0].links[i]["target"]==delete_node_id)){
+            forced_chart_option_delete.series[0].links[i].lineStyle.normal.type='dashed';
+            forced_chart_option.series[0].links[i]='';
+        }
+    }
 }
