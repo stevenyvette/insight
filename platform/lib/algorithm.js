@@ -41,7 +41,7 @@ function ReplacementValue(v,r,count){
 
 function ReplaceProbability(v,r,count){
     var p=0,tmp=0;
-
+	rp_value = new Array();
     if(v==r){
         rp_value[v]=p;
         return 0;
@@ -69,11 +69,12 @@ function ReplaceProbability(v,r,count){
 
 function Candidate(r,k,count){
     var flag=false;
+    max=0
     for(var i = 0;i < count;i++)
         candidate[i] = 0;
 
     for(var i=0;i<count;i++){
-        if(i!=r)
+        if(i!=r && !multi_reshape.includes(i))
             if(promatrix[i][2]<=promatrix[r][2])
                 if(Dijkstra(i,r,count)<=k)
                     if(WRP(i,r,count)>=0){             

@@ -19,8 +19,9 @@ var trans;
 var click_link;
 var click_node;
 var check;
-var rp_value = new Array();
+var rp_value;
 var top_three = {'top':-1,'second':-1,'third':-1};
+var multi_reshape;
 
 function show(file){
     $("#graph-1,#graph-ori").hide();
@@ -716,7 +717,7 @@ function node_delete (id) {
 	
     if(delete_node_id<count&&promatrix[delete_node_id][2]!=0){
     	$('#delete-node-id').value='';
-    	set_block_2();
+    	
     	//初始化各可视化图
 		forced_chart_option_delete=$.extend(true,{},forced_chart_option);
 		circular_option_delete=$.extend(true,{},circular_option);
@@ -730,17 +731,15 @@ function node_delete (id) {
         circular_chart_remove.setOption(circular_option);
         circular_chart.setOption(circular_option_delete);
         forced_chart_remove.setOption(forced_chart_option);
-		
 		set_style();
 		
 		//只进行一次迭代，显示最有可能的 3 个替换节点并且给出替换概率
-		if(times==1){ 				
+		if(times==1){
+			set_block_2();
 			Candidate(delete_node_id,k,count);
 			Candidate_piechart(delete_node_id,k,count);
 			for(var i=0;i<count;i++){
-	            if(ReplaceProbability(i,delete_node_id,count)>0){
-	                option_candidate.title.text='The best candidate is: \t'+promatrix[predict][1];
-	                option_candidate.title.subtext='Node id : '+predict;
+	            if(ReplaceProbability(i,delete_node_id,count)>0){	                
 	                option_candidate.series[0].data.push({value:ReplaceProbability(i,delete_node_id,count).toFixed(3),name:"node "+i});
 	            }
 	        }
@@ -748,6 +747,9 @@ function node_delete (id) {
 	        if(option_candidate.series[0].data.length==0){
 	            option_candidate.series[0].data.push({value:0,name:"No Candidates"});
 	            option_candidate.title.subtext='No candidate.';
+	        }else{
+	        		option_candidate.title.text='The best candidate is: \t'+promatrix[predict][1];
+                option_candidate.title.subtext='Node id : '+predict;
 	        }
 	        
 	        candidate_chart.setOption(option_candidate);
@@ -799,7 +801,6 @@ function node_delete (id) {
 	        promatrix[delete_node_id][2]=0;
 	        promatrix[delete_node_id][3]=0;
 	        promatrix[delete_node_id][4]=0;
-	        update_table();
 	        show_result();
 	        window.addEventListener("resize", function () {
 	            circular_chart.resize(); 
@@ -810,16 +811,35 @@ function node_delete (id) {
 		}
 		else{
 			tmp_delete=delete_node_id;
-			tmp_count=count;
+			multi_reshape=[]
 			while(times!=0){
-				Candidate(tmp_delete,k,tmp_count);
-				
-				
-				tmp_delete=
-				tmp_count--;
-				times--;
+				console.log('remove'+tmp_delete);
+				Candidate(tmp_delete,k,count);
+				for(var i=0;i<count;i++)
+	            		ReplaceProbability(i,tmp_delete,count);
+	            	if(predict!=-1){
+	            		multi_reshape.push(predict);
+	            		tmp_delete=predict;
+					times--;
+					predict=-1;
+	            	}else{
+	            		alert("在第"+(4-times)+"次迭代时失败！");
+	            		break;
+	            	}
+	            console.log(multi_reshape); 	
 			}
+			for (var i=0;i<multi_reshape.length;i++){
+				forced_chart_option_delete.series[0].data[multi_reshape[i]].symbol='circle';
+				forced_chart_option_delete.series[0].data[multi_reshape[i]].itemStyle={normal:{color:colorsN3[3-i]}};
+				promatrix[multi_reshape[i]][2]=0;
+		        promatrix[multi_reshape[i]][3]=0;
+		        promatrix[multi_reshape[i]][4]=0;
+			}
+			forced_chart.setOption(forced_chart_option_delete);
+			show_multi_result();
 		}
+		
+		update_table();
     }
     else{
         alert("节点不存在!");

@@ -125,7 +125,24 @@ function show_result(){
 	setTimeout("show_jbox()",2000);
 	setTimeout("show_jbox()",2500);
 	setTimeout("show_jbox()",3000);
+	currentColorN3=0;
 	console.log(contentsN3);
+}
+
+function show_multi_result(){
+	var time=1500
+	for (var i=0;i<multi_reshape.length;i++){
+		multi_contents[3-i] = promatrix[multi_reshape[i]][1];
+		setTimeout("show_multi_jbox()",time);
+		time+=500;
+	}
+	while(time<3000){
+		multi_contents[6-time/500]='None';
+		setTimeout("show_multi_jbox()",time);
+		time+=500;
+	}
+	setTimeout("show_multi_jbox()",time);
+	currentColorN3=0;
 }
 
 function link_action(source,target){
