@@ -71,7 +71,6 @@ function Candidate(r,k,count){
     max=0
     for(var i = 0;i < count;i++)
         candidate[i] = 0;
-
     for(var i=0;i<count;i++){
         if(i!=r && !multi_reshape.includes(i))
             if(promatrix[i][2]<=promatrix[r][2])
