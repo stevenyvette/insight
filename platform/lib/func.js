@@ -4,7 +4,7 @@ var filepath="";
 var times=1;
 
 function get_filepath(text){
-	$("#introduction").slideUp('slow');
+	$("#introduction").hide();
 	$("#network-id").fadeIn('slow');
 	setTimeout('show("'+text+'")',200);
 	filename=text;
@@ -126,7 +126,6 @@ function show_result(){
 	setTimeout("show_jbox()",2500);
 	setTimeout("show_jbox()",3000);
 	currentColorN3=0;
-	console.log(contentsN3);
 }
 
 function show_multi_result(){

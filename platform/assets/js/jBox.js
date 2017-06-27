@@ -98,7 +98,7 @@ function jBox(type, options) {
 		onAjaxComplete: function() {},	// Triggered when the ajax call is completed
 		
 		// Only for Notices:
-		autoClose: 5000,				// Time when jBox should close automatically
+		autoClose: 500000,				// Time when jBox should close automatically
 		color: null,					// Makes your notices colorful, use 'black', 'red', 'green', 'blue', 'yellow'
 		stack: true,					// Set to false to disable notice-stackin
 	};

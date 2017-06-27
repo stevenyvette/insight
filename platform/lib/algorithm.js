@@ -41,7 +41,7 @@ function ReplacementValue(v,r,count){
 
 function ReplaceProbability(v,r,count){
     var p=0,tmp=0;
-	rp_value = new Array();
+//	rp_value = new Array();
     if(v==r){
         rp_value[v]=p;
         return 0;
@@ -54,7 +54,7 @@ function ReplaceProbability(v,r,count){
 
     if(candidate[v]!=0){
         p=ReplacementValue(v,r,count)/tmp;
-        if(p>max){
+        if(p>max && !(v in multi_reshape)&&v!=delete_node_id){
             predict=v;
             max=p;
         }
@@ -63,7 +63,6 @@ function ReplaceProbability(v,r,count){
         p=0;
 
     rp_value[v]=p;
-
     return p;
 }
 

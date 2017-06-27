@@ -19,9 +19,9 @@ var trans;
 var click_link;
 var click_node;
 var check;
-var rp_value;
+var rp_value=[];
 var top_three = {'top':-1,'second':-1,'third':-1};
-var multi_reshape;
+var multi_reshape=[];
 
 function show(file){
     $("#graph-1,#graph-ori").hide();
@@ -575,7 +575,7 @@ function show_rv_rp(delete_node_id){
     var rp_value3 = rp_value.concat();
     rp_value3.sort(function(a,b){
             return b-a;});
-
+	console.log(rp_value3);
     var dex=-1;
     for(var i=0;i<count;i++){
         if(rp_value3[i]>0){
@@ -719,61 +719,61 @@ function node_delete (id) {
     	$('#delete-node-id').value='';
     	
     	//初始化各可视化图
-		forced_chart_option_delete=$.extend(true,{},forced_chart_option);
-		circular_option_delete=$.extend(true,{},circular_option);
-	    forced_chart_remove=echarts.init(document.getElementById("graph-remove"));
-	    forced_chart_reshape_1=echarts.init(document.getElementById("graph-1"),'dark');
-	    forced_chart_reshape_ori=echarts.init(document.getElementById("graph-ori"),'dark');
-	    forced_chart_reshape=echarts.init(document.getElementById("graph-reshape"));
-	    circular_chart_remove = echarts.init(document.getElementById("relationship-remove"));
-	    circular_chart_reshape = echarts.init(document.getElementById("relationship-reshape"));
-	    forced_chart_reshape_ori.setOption(forced_chart_option);
-        circular_chart_remove.setOption(circular_option);
-        circular_chart.setOption(circular_option_delete);
-        forced_chart_remove.setOption(forced_chart_option);
-		set_style();
-		
-		//只进行一次迭代，显示最有可能的 3 个替换节点并且给出替换概率
-		if(times==1){
-			set_block_2();
-			Candidate(delete_node_id,k,count);
-			Candidate_piechart(delete_node_id,k,count);
-			for(var i=0;i<count;i++){
-	            if(ReplaceProbability(i,delete_node_id,count)>0){	                
-	                option_candidate.series[0].data.push({value:ReplaceProbability(i,delete_node_id,count).toFixed(3),name:"node "+i});
-	            }
-	        }
+	forced_chart_option_delete=$.extend(true,{},forced_chart_option);
+	circular_option_delete=$.extend(true,{},circular_option);
+    forced_chart_remove=echarts.init(document.getElementById("graph-remove"));
+    forced_chart_reshape_1=echarts.init(document.getElementById("graph-1"),'dark');
+    forced_chart_reshape_ori=echarts.init(document.getElementById("graph-ori"),'dark');
+    forced_chart_reshape=echarts.init(document.getElementById("graph-reshape"));
+    circular_chart_remove = echarts.init(document.getElementById("relationship-remove"));
+    circular_chart_reshape = echarts.init(document.getElementById("relationship-reshape"));
+    forced_chart_reshape_ori.setOption(forced_chart_option);
+    circular_chart_remove.setOption(circular_option);
+    circular_chart.setOption(circular_option_delete);
+    forced_chart_remove.setOption(forced_chart_option);
+	set_style();
 	
-	        if(option_candidate.series[0].data.length==0){
-	            option_candidate.series[0].data.push({value:0,name:"No Candidates"});
-	            option_candidate.title.subtext='No candidate.';
-	        }else{
-	        		option_candidate.title.text='The best candidate is: \t'+promatrix[predict][1];
-                option_candidate.title.subtext='Node id : '+predict;
-	        }
-	        
-	        candidate_chart.setOption(option_candidate);
-	        show_rv_rp(delete_node_id);
-	        
-	        var rp_value1 = rp_value.concat();
-	        rp_value1.sort(function(a,b){
-	                return b-a;});
-	        if(rp_value1[0]>0){
-	            var dex=rp_value.indexOf(rp_value1[0]);
-	            forced_chart_option_delete.series[0].data[dex].symbol='circle';
-	            forced_chart_option_delete.series[0].data[dex].itemStyle={normal:{color:'green'}};
-	        }
-	        if(rp_value1[1]>0){
-	            var dex=rp_value.indexOf(rp_value1[1]);
-	            forced_chart_option_delete.series[0].data[dex].symbol='circle';
-	            forced_chart_option_delete.series[0].data[dex].itemStyle={normal:{color:'blue'}};
-	        }
-	        if(rp_value1[2]>0){
-	            var dex=rp_value.indexOf(rp_value1[2]);
-	            forced_chart_option_delete.series[0].data[dex].symbol='circle';
-	            forced_chart_option_delete.series[0].data[dex].itemStyle={normal:{color:'yellow'}};
-	        }
-	        forced_chart.setOption(forced_chart_option_delete);
+	//只进行一次迭代，显示最有可能的 3 个替换节点并且给出替换概率
+	if(times==1){
+		set_block_2();
+		Candidate(delete_node_id,k,count);
+		Candidate_piechart(delete_node_id,k,count);
+		for(var i=0;i<count;i++){
+            if(ReplaceProbability(i,delete_node_id,count)>0){	                
+                option_candidate.series[0].data.push({value:ReplaceProbability(i,delete_node_id,count).toFixed(3),name:"node "+i});
+            }
+        }
+
+        if(option_candidate.series[0].data.length==0){
+            option_candidate.series[0].data.push({value:0,name:"No Candidates"});
+            option_candidate.title.subtext='No candidate.';
+        }else{
+        		option_candidate.title.text='The best candidate is: \t'+promatrix[predict][1];
+            option_candidate.title.subtext='Node id : '+predict;
+        }
+        
+        candidate_chart.setOption(option_candidate);
+        show_rv_rp(delete_node_id);
+        
+        var rp_value1 = rp_value.concat();
+        rp_value1.sort(function(a,b){
+                return b-a;});
+        if(rp_value1[0]>0){
+            var dex=rp_value.indexOf(rp_value1[0]);
+            forced_chart_option_delete.series[0].data[dex].symbol='circle';
+            forced_chart_option_delete.series[0].data[dex].itemStyle={normal:{color:'green'}};
+        }
+        if(rp_value1[1]>0){
+            var dex=rp_value.indexOf(rp_value1[1]);
+            forced_chart_option_delete.series[0].data[dex].symbol='circle';
+            forced_chart_option_delete.series[0].data[dex].itemStyle={normal:{color:'blue'}};
+        }
+        if(rp_value1[2]>0){
+            var dex=rp_value.indexOf(rp_value1[2]);
+            forced_chart_option_delete.series[0].data[dex].symbol='circle';
+            forced_chart_option_delete.series[0].data[dex].itemStyle={normal:{color:'yellow'}};
+        }
+        forced_chart.setOption(forced_chart_option_delete);
 	        
 	        //根据predict开始reshape
 	        if(predict!=-1){
