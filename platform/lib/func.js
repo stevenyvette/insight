@@ -27,40 +27,40 @@ function set_block_2 () {
 
 function graph(){
 	$("#graph").show();
-    $("#graph-1").hide();
-    $("#graph-ori").hide();    
+	$("#graph-1").hide();
+	$("#graph-ori").hide();    
 }
 
 function graph_1(){
 	$("#graph").hide();
-    $("#graph-1").show();
-    $("#graph-ori").hide();
+	$("#graph-1").show();
+	$("#graph-ori").hide();
 }
 
 function graph_ori(){
 	$("#graph").hide();
-    $("#graph-1").hide();
-    $("#graph-ori").show();
+	$("#graph-1").hide();
+	$("#graph-ori").show();
 }
 
 function graph_remove () {
 	$("#graph-remove").show();
-    $("#graph-reshape,#relationship-remove,#relationship-reshape").hide();
+	$("#graph-reshape,#relationship-remove,#relationship-reshape").hide();
 }
 
 function graph_reshape () {
 	$("#graph-reshape").show();
-    $("#graph-remove,#relationship-remove,#relationship-reshape").hide();
+	$("#graph-remove,#relationship-remove,#relationship-reshape").hide();
 }
 
 function relationship_remove () {
 	$("#relationship-remove").show();
-    $("#graph-reshape,#graph-remove,#relationship-reshape").hide();
+	$("#graph-reshape,#graph-remove,#relationship-reshape").hide();
 }
 
 function relationship_reshape () {
 	$("#relationship-reshape").show();
-    $("#graph-reshape,#graph-remove,#relationship-remove").hide();
+	$("#graph-reshape,#graph-remove,#relationship-remove").hide();
 }
 
 function set_init () {
@@ -83,44 +83,44 @@ function set_init () {
 
 function table_start(){
 	$(document).ready(function () {
-        $('#dataTables-example').dataTable();
-    });
+		$('#dataTables-example').dataTable();
+	});
 }
 
 function node_action(){
 	layer.open({
-			  type: 1,
-			  title: false,
-			  closeBtn: false,
-			  area: '300px;',
-			  shade: 0.8,
-			  id: 'LAY_layuipro3', //设定一个id，防止重复弹出
-			  resize: false,
-			  btn: ['确认', '取消'],
-			  btnAlign: 'c',
-			  moveType: 1, //拖拽模式，0或者1
-			  content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;text-align:center">是否确认删除节点：<br><br><big style="color:#F09B22;">' + promatrix[id][1] + '</big></div>',
-			  success: function(){
-					$('.layui-layer-btn0').click(function(){
-						times=$('#times').val();
-						node_delete(id);
-						window.location.hash="#network-graph";
-					});
-			  },
+		type: 1,
+		title: false,
+		closeBtn: false,
+		area: '300px;',
+		shade: 0.8,
+		id: 'LAY_layuipro3', //设定一个id，防止重复弹出
+		resize: false,
+		btn: ['确认', '取消'],
+		btnAlign: 'c',
+		moveType: 1, //拖拽模式，0或者1
+		content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;text-align:center">是否确认删除节点：<br><br><big style="color:#F09B22;">' + promatrix[id][1] + '</big></div>',
+		success: function(){
+				$('.layui-layer-btn0').click(function(){
+					times=$('#times').val();
+					node_delete(id);
+					window.location.hash="#network-graph";
+				});
+		},
 	});
 };
 
 function show_result(){
 	var rp_value2 = rp_value.concat();
-    rp_value2.sort(function(a,b){
-            return b-a;});
+	rp_value2.sort(function(a,b){
+			return b-a;});
 	for (var i=0;i<3;i++){
-        if(rp_value2[i]>0){
-            var dex=rp_value.indexOf(rp_value2[i]);
-            titlesN3[3-i] = titlesN3[3-i]+': '+ promatrix[dex][1];
-            contentsN3[3-i] = 'PR: '+rp_value2[i].toFixed(8)+''; 
-        }
-    }
+		if(rp_value2[i]>0){
+			var dex=rp_value.indexOf(rp_value2[i]);
+			titlesN3[3-i] = titlesN3[3-i]+': '+ promatrix[dex][1];
+			contentsN3[3-i] = 'PR: '+rp_value2[i].toFixed(8)+''; 
+		}
+	}
 	setTimeout("show_jbox()",1500);
 	setTimeout("show_jbox()",2000);
 	setTimeout("show_jbox()",2500);
