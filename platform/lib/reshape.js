@@ -717,9 +717,7 @@ function node_delete (id) {
 
 	if(delete_node_id<count&&promatrix[delete_node_id][2]!=0){
 			$('#delete-node-id').value='';
-
 		set_block_2();
-
 			//初始化各可视化图
 		forced_chart_option_delete=$.extend(true,{},forced_chart_option);
 		circular_option_delete=$.extend(true,{},circular_option);
@@ -736,7 +734,7 @@ function node_delete (id) {
 		set_style();
 
 		//只进行一次迭代，显示最有可能的 3 个替换节点并且给出替换概率
-		if(times==1){
+		if(times == 1){
 			Candidate(delete_node_id,k,count);
 			Candidate_piechart(delete_node_id,k,count);
 			for(var i=0;i<count;i++){
@@ -812,7 +810,8 @@ function node_delete (id) {
 			});
 		}
 		else{
-			tmp_delete=delete_node_id;
+			set_block_3();
+			tmp_delete = delete_node_id;
 			multi_reshape=[]
 			while(times!=0){
 				console.log('remove'+tmp_delete);

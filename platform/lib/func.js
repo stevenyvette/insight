@@ -25,10 +25,14 @@ function set_block_2 () {
 	$('#nav-example,#graph-1,#graph-ori,#2-1').fadeIn('slow');
 }
 
+function set_block_3() {
+	$('#2-1').hide();
+}
+
 function graph(){
 	$("#graph").show();
 	$("#graph-1").hide();
-	$("#graph-ori").hide();    
+	$("#graph-ori").hide();
 }
 
 function graph_1(){

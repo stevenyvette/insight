@@ -75,7 +75,7 @@ function Candidate(r,k,count){
 		if(i!=r && !multi_reshape.includes(i))
 			if(promatrix[i][2]<=promatrix[r][2])
 				if(Dijkstra(i,r,count)<=k)
-					if(WRP(i,r,count)>=0){             
+					if(WRP(i,r,count)>=0){
 						candidate[i]=i;
 						flag=true;
 					}
